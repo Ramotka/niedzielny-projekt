@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetsAllDietDtoPort } from '../../../application/ports/secondary/gets-all-diet.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
+import { RemovesDietDtoPort } from '../../../application/ports/secondary/removes-diet.dto-port';
 
 @Injectable()
 export class FirebaseDietService
-  implements AddsDietDtoPort, GetsAllDietDtoPort
+  implements AddsDietDtoPort, GetsAllDietDtoPort, RemovesDietDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -22,5 +23,9 @@ export class FirebaseDietService
       .collection<DietDTO>('diets')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: DietDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  remove(id: string): void {
+    this._client.doc('diets/' + id).delete();
   }
 }
