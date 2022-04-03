@@ -3,4 +3,5 @@ export interface EventDTO {
   readonly description: string;
   readonly title: string;
   readonly date: string;
+  readonly id: string;
 }

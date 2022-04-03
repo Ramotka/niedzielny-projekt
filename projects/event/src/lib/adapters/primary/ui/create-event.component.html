@@ -1,1 +1,12 @@
-<h1> test</h1><form [formGroup]="createEvent"><input type="text" formControlName="imageUrl" placeholder="Image Url"><input type="text" formControlName="description" placeholder="Description"><input type="text" formControlName="title" placeholder="Title"><input type="text" formControlName="date" placeholder="Date"><input type="submit" value="Submit"></form>
+<h1>test</h1>
+<form [formGroup]="createEvent" (ngSubmit)="onCreateEventSubmited(createEvent)">
+  <input type="text" formControlName="imageUrl" placeholder="Image Url" /><input
+    type="text"
+    formControlName="description"
+    placeholder="Description"
+  /><input type="text" formControlName="title" placeholder="Title" /><input
+    type="text"
+    formControlName="date"
+    placeholder="Date"
+  /><input type="submit" value="Submit" />
+ </form>

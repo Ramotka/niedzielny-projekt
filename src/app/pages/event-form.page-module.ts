@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EventFormPage } from './event-form.page';
-import { CreateEventComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/create-event.component-module';
+import { CreateEventComponentModule } from '@event';
+import { FirebaseCreateEventServiceModule } from '@event';
+
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
@@ -11,7 +13,8 @@ import { CreateEventComponentModule } from '../../../projects/event/src/lib/adap
           component: EventFormPage,
         }
       ]),
-  CreateEventComponentModule
+  CreateEventComponentModule,
+  FirebaseCreateEventServiceModule,
 ],
   	declarations: [EventFormPage],
   	providers: [],
