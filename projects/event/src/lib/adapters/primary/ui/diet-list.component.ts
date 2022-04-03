@@ -14,6 +14,10 @@ import {
   REMOVES_DIET_DTO,
   RemovesDietDtoPort,
 } from '../../../application/ports/secondary/removes-diet.dto-port';
+import {
+  SETS_DIET_DTO,
+  SetsDietDtoPort,
+} from '../../../application/ports/secondary/sets-diet.dto-port';
 
 @Component({
   selector: 'lib-diet-list',
@@ -26,10 +30,17 @@ export class DietListComponent {
 
   constructor(
     @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,
-    @Inject(REMOVES_DIET_DTO) private _removesDietDto: RemovesDietDtoPort
+    @Inject(REMOVES_DIET_DTO) private _removesDietDto: RemovesDietDtoPort,
+    @Inject(SETS_DIET_DTO) private _setsDietDto: SetsDietDtoPort
   ) {}
 
   onDeleteClicked(itemId: string): void {
     this._removesDietDto.remove(itemId);
+  }
+
+  onEditClicked(diet: Partial<DietDTO>): void {
+    this._setsDietDto.set({
+      id: diet.id,
+    });
   }
 }
