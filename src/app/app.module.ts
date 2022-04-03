@@ -8,6 +8,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { NavigationComponentModule } from "projects/navigation/src/lib/adapters/primary/ui/navigation.component-module";
+import { FirebaseNavLinkServiceModule } from "projects/navigation/src";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { NavigationComponentModule } from "projects/navigation/src/lib/adapters/
     BrowserAnimationsModule,
     RouterModule,
     NavigationComponentModule,
+    FirebaseNavLinkServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

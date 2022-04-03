@@ -1,6 +1,6 @@
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { GetsAllNavLinkDtoPort } from "../../../application/ports/secondary/gets-all-nav-link.dto-port";
 import { NavLinkDTO } from "../../../application/ports/secondary/nav-link.dto";
@@ -11,9 +11,31 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
   constructor(private _client: AngularFirestore) {}
 
   getAll(criterion: Partial<NavLinkDTO>): Observable<NavLinkDTO[]> {
-    return this._client
-      .collection<NavLinkDTO>("nav-links")
-      .valueChanges({ idField: "id" })
-      .pipe(map((data: NavLinkDTO[]) => filterByCriterion(data, criterion)));
+    return of([
+      {
+        name: "Dashboard",
+        link: "/",
+      },
+      {
+        name: "Event",
+        link: "/event-form",
+      },
+      {
+        name: "Diet",
+        link: "/diet",
+      },
+      {
+        name: "Transport",
+        link: "/",
+      },
+      {
+        name: "Attractions",
+        link: "/",
+      },
+      {
+        name: "Users",
+        link: "/",
+      },
+    ]);
   }
 }

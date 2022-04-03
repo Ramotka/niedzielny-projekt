@@ -1,5 +1,5 @@
 <ul class="nav flex-column ">
     <li class="nav-item" *ngFor="let nav of navLink$ | async">
-        <a class="nav-link" routerLink="nav.link">{{ nav.name }}</a>
+        <a class="nav-link fs-5 text-decoration-none text-dark" [routerLink]="nav.link">{{ nav.name }}</a>
     </li>
 </ul>
