@@ -1,20 +1,25 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DashboardPageModule } from './pages/dashboard.page-module';
-import { EventFormPageModule } from './pages/event-form.page-module';
-
-const routes: Routes = [{ 
-        path: '', 
-        loadChildren: () => DashboardPageModule
-      },
-  { 
-        path: 'event-form', 
-        loadChildren: () => EventFormPageModule
-      }
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { DashboardPageModule } from "./pages/dashboard.page-module";
+import { EventFormPageModule } from "./pages/event-form.page-module";
+import { DietPageModule } from "./pages/diet.page-module";
+const routes: Routes = [
+  {
+    path: "",
+    loadChildren: () => DashboardPageModule,
+  },
+  {
+    path: "event-form",
+    loadChildren: () => EventFormPageModule,
+  },
+  {
+    path: "diet",
+    loadChildren: () => DietPageModule,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

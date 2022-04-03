@@ -1,0 +1,8 @@
+<form
+  class="border-bottom pb-5"
+  [formGroup]="newDiet"
+  (ngSubmit)="onNewDietSubmited(newDiet)"
+>
+  <input type="text" formControlName="name" placeholder="Name" />
+  <input type="submit" value="Save changes" [disabled]="!newDiet.valid" />
+</form>
