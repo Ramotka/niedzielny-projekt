@@ -10,7 +10,7 @@
   <div class="g-col-6 d-flex flex-column">
     <p>Event Description</p>
     <input
-      type="text"
+      type="textarea"
       formControlName="description"
       placeholder="Description"
     />
@@ -23,5 +23,5 @@
     <p>Event Date</p>
     <input type="text" formControlName="date" placeholder="Date" />
   </div>
-  <input type="submit" value="Submit" [disabled]="!createEvent.valid" />
+  <input type="submit" value="Save changes" [disabled]="!createEvent.valid" />
 </form>
