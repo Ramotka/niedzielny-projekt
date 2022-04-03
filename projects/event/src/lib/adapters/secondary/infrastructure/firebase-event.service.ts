@@ -4,9 +4,8 @@ import { AddsEventDtoPort } from '../../../application/ports/secondary/adds-even
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 
 @Injectable()
-export class FirebaseCreateEventService implements AddsEventDtoPort {
-  constructor(private _client: AngularFirestore) {
-  }
+export class FirebaseEventService implements AddsEventDtoPort {
+  constructor(private _client: AngularFirestore) {}
 
   add(event: Partial<EventDTO>): void {
     this._client.collection('events').add(event);

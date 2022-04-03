@@ -1,11 +1,27 @@
-<div class="container-flex">
-  <form class="row row-cols-2" [formGroup]="createEvent" (ngSubmit)="onCreateEventSubmited(createEvent)">
-    <div class="col"><label>Add event image<input type="text" formControlName="imageUrl" placeholder="Image Url" /></label></div>
-    <div class="col"><label>Event Description<input type="text" formControlName="description" placeholder="Description"/></label></div>
-    <div class="col"><label>Event Title<input type="text" formControlName="title" placeholder="Title" /></label></div>
-    <div class="col"><label>Event Date<input type="text" formControlName="date" placeholder="Date"/></label></div>
-    <input type="submit" value="Submit" id="submit" />
- </form>
-</div>
-
-
+<form
+  class="grid"
+  [formGroup]="createEvent"
+  (ngSubmit)="onCreateEventSubmited(createEvent)"
+>
+  <div class="g-col-6 d-flex flex-column">
+    <p>Add event image</p>
+    <input type="text" formControlName="imageUrl" placeholder="Image Url" />
+  </div>
+  <div class="g-col-6 d-flex flex-column">
+    <p>Event Description</p>
+    <input
+      type="text"
+      formControlName="description"
+      placeholder="Description"
+    />
+  </div>
+  <div class="g-col-6 d-flex flex-column">
+    <p>Event Title</p>
+    <input type="text" formControlName="title" placeholder="Title" />
+  </div>
+  <div class="g-col-6 d-flex flex-column">
+    <p>Event Date</p>
+    <input type="text" formControlName="date" placeholder="Date" />
+  </div>
+  <input type="submit" value="Submit" [disabled]="!createEvent.valid" />
+</form>
