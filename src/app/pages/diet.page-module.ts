@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DietPage } from './diet.page';
 import { AddDietFormComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/add-diet-form.component-module';
 import { FirebaseDietServiceModule } from '@event';
+import { DietListComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/diet-list.component-module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { FirebaseDietServiceModule } from '@event';
     ]),
     AddDietFormComponentModule,
     FirebaseDietServiceModule,
+    DietListComponentModule
   ],
   declarations: [DietPage],
   providers: [],
