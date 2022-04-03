@@ -1,12 +1,11 @@
-<h1>test</h1>
-<form [formGroup]="createEvent" (ngSubmit)="onCreateEventSubmited(createEvent)">
-  <input type="text" formControlName="imageUrl" placeholder="Image Url" /><input
-    type="text"
-    formControlName="description"
-    placeholder="Description"
-  /><input type="text" formControlName="title" placeholder="Title" /><input
-    type="text"
-    formControlName="date"
-    placeholder="Date"
-  /><input type="submit" value="Submit" />
+<div class="container-flex">
+  <form class="row row-cols-2" [formGroup]="createEvent" (ngSubmit)="onCreateEventSubmited(createEvent)">
+    <div class="col"><label>Add event image<input type="text" formControlName="imageUrl" placeholder="Image Url" /></label></div>
+    <div class="col"><label>Event Description<input type="text" formControlName="description" placeholder="Description"/></label></div>
+    <div class="col"><label>Event Title<input type="text" formControlName="title" placeholder="Title" /></label></div>
+    <div class="col"><label>Event Date<input type="text" formControlName="date" placeholder="Date"/></label></div>
+    <input type="submit" value="Submit" id="submit" />
  </form>
+</div>
+
+
