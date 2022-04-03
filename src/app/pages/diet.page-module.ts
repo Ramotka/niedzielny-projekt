@@ -7,6 +7,7 @@ import {
   FirebaseDietServiceModule,
   DietListComponentModule,
   AddDietFormComponentModule,
+  InMemoryInputStateStorageModule,
 } from '@event';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     AddDietFormComponentModule,
     FirebaseDietServiceModule,
     DietListComponentModule,
+    InMemoryInputStateStorageModule,
   ],
   declarations: [DietPage],
   providers: [],
