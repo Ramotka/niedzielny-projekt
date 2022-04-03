@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
   ViewEncapsulation,
@@ -17,7 +17,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddDietFormComponent {
-  readonly newDiet: FormGroup = new FormGroup({ name: new FormControl() });
+  readonly newDiet: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+  });
 
   constructor(@Inject(ADDS_DIET_DTO) private _addsDietDto: AddsDietDtoPort) {}
 

@@ -3,8 +3,6 @@
   [formGroup]="newDiet"
   (ngSubmit)="onNewDietSubmited(newDiet)"
 >
-  <input type="text" formControlName="name" placeholder="Name" /><input
-    type="submit"
-    value="Save changes"
-  />
+  <input type="text" formControlName="name" placeholder="Name" />
+  <input type="submit" value="Save changes" [disabled]="!newDiet.valid" />
 </form>
