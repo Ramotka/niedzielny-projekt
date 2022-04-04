@@ -23,6 +23,7 @@ import {
   InputStateDtoStoragePort,
 } from '../../../application/ports/secondary/input-state-dto.storage-port';
 import { InputStateDTO } from '../../../application/ports/secondary/input-state.dto';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-diet-list',
@@ -34,6 +35,8 @@ export class DietListComponent {
   diets$: Observable<DietDTO[]> = this._getsAllDietDto.getAll();
   inputState$: Observable<InputStateDTO> =
     this._inputStateDtoStorage.asObservable();
+
+  readonly editingDiet: FormGroup = new FormGroup({ name: new FormControl() });
 
   constructor(
     @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,
@@ -47,17 +50,24 @@ export class DietListComponent {
     this._removesDietDto.remove(itemId);
   }
 
-  // onEditClicked(diet: Partial<DietDTO>): void {
+  onSaveChangesClicked(changedDiet: Partial<DietDTO>): void {
+    this._setsDietDto.set({
+      id: changedDiet.id,
+      name: this.editingDiet.get('name')?.value,
+    });
 
-  // //   this._setsDietDto.set({
-  // //     id: diet.id,
-  // //   });
-  // // }
+    this._inputStateDtoStorage.next({
+      dietId: changedDiet.id,
+      isEditing: false,
+    });
+  }
 
   onEditClicked(diet: DietDTO): void {
     this._inputStateDtoStorage.next({
       dietId: diet.id,
       isEditing: true,
     });
+
+    this.editingDiet.get('name')?.setValue(diet.name);
   }
 }
