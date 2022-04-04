@@ -1,8 +1,19 @@
 <form
-  class="border-bottom pb-5"
+  class="border-bottom pb-5 d-flex flex-column align-items-end w-25 mt-4"
   [formGroup]="newDiet"
   (ngSubmit)="onNewDietSubmited(newDiet)"
 >
-  <input type="text" formControlName="name" placeholder="Name" />
-  <input type="submit" value="Save changes" [disabled]="!newDiet.valid" />
+  <p class="fs-6 my-2 align-self-start">Add your diet</p>
+  <input
+    class="ps-2 mb-3 w-100"
+    type="text"
+    formControlName="name"
+    placeholder="Add your diet"
+  />
+  <input
+    class="bg-success btn w-50"
+    type="submit"
+    value="Save changes"
+    [disabled]="!newDiet.valid"
+  />
 </form>
