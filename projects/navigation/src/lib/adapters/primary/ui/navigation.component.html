@@ -1,5 +1,7 @@
-<ul class="nav flex-column ">
-    <li class="nav-item" *ngFor="let nav of navLink$ | async">
-        <a class="nav-link fs-5 text-decoration-none text-dark" [routerLink]="nav.link">{{ nav.name }}</a>
+<ul class="nav flex-column pt-5">
+    <li class="nav-item fw-bold" *ngFor="let nav of navLink$ | async">
+        <a class="nav-link d-inline-flex fs-6 text-decoration-none text-dark" [routerLink]="nav.link">
+            <img class="pe-2" [src]="nav.icon"> {{ nav.name }}
+        </a>
     </li>
 </ul>
