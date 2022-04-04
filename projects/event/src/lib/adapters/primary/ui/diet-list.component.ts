@@ -57,7 +57,6 @@ export class DietListComponent {
     });
 
     this._inputStateDtoStorage.next({
-      dietId: changedDiet.id,
       isEditing: false,
     });
   }
