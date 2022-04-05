@@ -23,7 +23,7 @@ import {
   InputStateDtoStoragePort,
 } from '../../../application/ports/secondary/input-state-dto.storage-port';
 import { InputStateDTO } from '../../../application/ports/secondary/input-state.dto';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-diet-list',
@@ -36,7 +36,9 @@ export class DietListComponent {
   inputState$: Observable<InputStateDTO> =
     this._inputStateDtoStorage.asObservable();
 
-  readonly editingDiet: FormGroup = new FormGroup({ name: new FormControl() });
+  readonly editingDiet: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+  });
 
   constructor(
     @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,
