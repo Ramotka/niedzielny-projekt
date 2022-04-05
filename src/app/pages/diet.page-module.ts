@@ -8,7 +8,7 @@ import {
   DietListComponentModule,
   AddDietFormComponentModule,
   InMemoryInputStateStorageModule,
-} from '@event';
+} from '@diet';
 
 @NgModule({
   imports: [

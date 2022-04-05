@@ -20,7 +20,8 @@
     "lib": ["es2020", "dom"],
     "paths": {
       "@event": ["projects/event/src/index.ts"],
-      "@navigation": ["projects/navigation/src/index.ts"]
+      "@navigation": ["projects/navigation/src/index.ts"],
+      "@diet": ["projects/diet/src/index.ts"]
     }
   },
   "angularCompilerOptions": {
