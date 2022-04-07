@@ -1,20 +1,25 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { DashboardPageModule } from "./pages/dashboard.page-module";
-import { EventFormPageModule } from "./pages/event-form.page-module";
-import { DietPageModule } from "./pages/diet.page-module";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DashboardPageModule } from './pages/dashboard.page-module';
+import { EventFormPageModule } from './pages/event-form.page-module';
+import { DietPageModule } from './pages/diet.page-module';
+import { EventsListPageModule } from './pages/events-list.page-module';
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     loadChildren: () => DashboardPageModule,
   },
   {
-    path: "event-form",
+    path: 'event-form',
     loadChildren: () => EventFormPageModule,
   },
   {
-    path: "diet",
+    path: 'diet',
     loadChildren: () => DietPageModule,
+  },
+  {
+    path: 'event',
+    loadChildren: () => EventsListPageModule,
   },
 ];
 
