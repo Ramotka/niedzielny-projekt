@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-diet-page',
-  templateUrl: './diet.page.html',
+  selector: 'lib-events-list',
+  templateUrl: './events-list.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DietPage {}
+export class EventsListComponent {}
