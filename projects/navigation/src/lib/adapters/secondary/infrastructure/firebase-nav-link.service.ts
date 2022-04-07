@@ -1,10 +1,10 @@
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
-import { GetsAllNavLinkDtoPort } from "../../../application/ports/secondary/gets-all-nav-link.dto-port";
-import { NavLinkDTO } from "../../../application/ports/secondary/nav-link.dto";
-import { filterByCriterion } from "@lowgular/shared";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GetsAllNavLinkDtoPort } from '../../../application/ports/secondary/gets-all-nav-link.dto-port';
+import { NavLinkDTO } from '../../../application/ports/secondary/nav-link.dto';
+import { filterByCriterion } from '@lowgular/shared';
 
 @Injectable()
 export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
@@ -13,34 +13,34 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
   getAll(criterion: Partial<NavLinkDTO>): Observable<NavLinkDTO[]> {
     return of([
       {
-        name: "Dashboard",
-        link: "/",
-        icon: "/assets/icons/columns-gap.svg",
+        name: 'Dashboard',
+        link: '/',
+        icon: 'assets/icons/nav-links/dashboard.svg',
       },
       {
-        name: "Event",
-        link: "/event-form",
-        icon: "/assets/icons/calendar2-event.svg",
+        name: 'Event',
+        link: '/event-form',
+        icon: 'assets/icons/nav-links/event.svg',
       },
       {
-        name: "Diet",
-        link: "/diet",
-        icon: "/assets/icons/cup-straw.svg",
+        name: 'Diet',
+        link: '/diet',
+        icon: 'assets/icons/nav-links/diet.svg',
       },
       {
-        name: "Transport",
-        link: "/",
-        icon: "/assets/icons/bicycle.svg",
+        name: 'Transport',
+        link: '/',
+        icon: 'assets/icons/nav-links/transport.svg',
       },
       {
-        name: "Attractions",
-        link: "/",
-        icon: "/assets/icons/dribbble.svg",
+        name: 'Attractions',
+        link: '/',
+        icon: 'assets/icons/nav-links/attractions.svg',
       },
       {
-        name: "Users",
-        link: "/",
-        icon: "/assets/icons/people.svg",
+        name: 'Users',
+        link: '/',
+        icon: 'assets/icons/nav-links/users.svg',
       },
     ]);
   }
