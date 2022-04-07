@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => DietPageModule,
   },
   {
-    path: 'eventsList',
+    path: 'event',
     loadChildren: () => EventsListPageModule,
   },
 ];

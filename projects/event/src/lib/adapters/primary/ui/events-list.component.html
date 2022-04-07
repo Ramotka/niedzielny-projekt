@@ -1,0 +1,7 @@
+<div class="container d-flex align-items-center mt-3 border-bottom mx-auto">
+  <div class="w-50 d-flex justify-content-start align-items-center">
+    <p class="fs-3 fw-bold me-5">Events</p>
+    <p class="fs-3 fw-bold">Users</p>
+  </div>
+</div>
+<ul><li *ngFor="let item of events$ | async">{{ item | json }}</li></ul><ul><li *ngFor="let item of events$ | async">{{ item | json }}</li></ul>
