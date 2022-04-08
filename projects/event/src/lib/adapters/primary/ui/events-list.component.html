@@ -8,12 +8,12 @@
 <ul>
   <li
     class="d-flex justify-content-between align-items-center my-3"
-    *ngFor="let item of events$ | async"
+    *ngFor="let event of events$ | async"
   >
-    <p class="m-0">{{ item.title }}</p>
+    <p class="m-0">{{ event.title }}</p>
     <p class="m-0">https://link-app/link-222</p>
-    <p class="m-0">{{ item.date }}</p>
-    <a [routerLink]="item.id">Edit</a>
+    <p class="m-0">{{ event.date }}</p>
+    <a [routerLink]="['/event/' +event.id]" (click)="onEventClicked(event)">Edit</a>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
