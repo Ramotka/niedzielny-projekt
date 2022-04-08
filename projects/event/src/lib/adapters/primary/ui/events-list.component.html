@@ -13,7 +13,7 @@
     <p class="m-0">{{ item.title }}</p>
     <p class="m-0">https://link-app/link-222</p>
     <p class="m-0">{{ item.date }}</p>
-    <a [routerLink]="item.id">Edit</a>
+    <a [routerLink]="['/event/' +item.id]">Edit</a>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
