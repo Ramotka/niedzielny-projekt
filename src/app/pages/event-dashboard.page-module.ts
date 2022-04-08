@@ -3,7 +3,9 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { EventDashboardPage } from "./event-dashboard.page";
 import { EventDashboardComponentModule } from "../../../projects/event/src/lib/adapters/primary/ui/event-dashboard.component-module";
-import { FirebaseEventServiceModule } from "@event";
+import { EventIdResolverModule, FirebaseEventServiceModule } from "@event";
+import { DietPageModule } from "./diet.page-module";
+import { EventIdResolver } from "projects/event/src/lib/adapters/primary/ui/event-id.resolver";
 
 @NgModule({
   imports: [
@@ -12,10 +14,20 @@ import { FirebaseEventServiceModule } from "@event";
       {
         path: "",
         component: EventDashboardPage,
+        resolve: {
+          eventId: EventIdResolver,
+        },
+        children: [
+          {
+            path: "diet",
+            loadChildren: () => DietPageModule,
+          },
+        ],
       },
     ]),
     EventDashboardComponentModule,
     FirebaseEventServiceModule,
+    EventIdResolverModule,
   ],
   declarations: [EventDashboardPage],
   providers: [],
