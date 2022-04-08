@@ -1,1 +1,2 @@
-<h1>{{ event$ | async | json}}</h1>
+<h1>Nazwa imprezy:</h1>
+<p>{{ (event$ | async)?.title}}</p>
