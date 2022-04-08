@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { EventDashboardPage } from "./event-dashboard.page";
 import { EventDashboardComponentModule } from "../../../projects/event/src/lib/adapters/primary/ui/event-dashboard.component-module";
 import { FirebaseEventServiceModule } from "@event";
+import { DietPageModule } from "./diet.page-module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,12 @@ import { FirebaseEventServiceModule } from "@event";
       {
         path: "",
         component: EventDashboardPage,
+        children: [
+          {
+            path: "diet",
+            loadChildren: () => DietPageModule,
+          },
+        ],
       },
     ]),
     EventDashboardComponentModule,
