@@ -2,16 +2,12 @@
   <div class="grid mt-5">
     <div class="g-col-6 d-flex flex-column">
       <p>Add event image</p>
-      <div
-        class="form-control d-flex bg-white h-100 w-100 justify-content-center align-content-center"
-      >
-        <input
-          class="text-dark pt-4"
-          type="file"
-          formControlName="imageUrl"
-          placeholder="click here to upload"
-        />
-      </div>
+      <textarea
+        class="form-control pt-2"
+        rows="4"
+        formControlName="imageUrl"
+        placeholder="Add link to your image"
+      ></textarea>
     </div>
     <div class="g-col-6 d-flex flex-column">
       <p>Event Description</p>
@@ -33,13 +29,11 @@
     </div>
     <div class="g-col-6 d-flex flex-column">
       <p>Event Date</p>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="date"
-        placeholder="Add event date"
-        bsDatepicker
-      />
+      <input type="text"
+      placeholder="Daterangepicker"
+      class="form-control"
+      bsDaterangepicker
+      [bsConfig]="{ isAnimated: true }">
     </div>
   </div>
   <div class="text-end mt-5">
