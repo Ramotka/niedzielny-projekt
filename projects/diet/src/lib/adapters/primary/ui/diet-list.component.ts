@@ -24,6 +24,12 @@ import {
 } from '../../../application/ports/secondary/input-state-dto.storage-port';
 import { InputStateDTO } from '../../../application/ports/secondary/input-state.dto';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
+import {
+  CONTEXT_DTO_STORAGE,
+  ContextDtoStoragePort,
+} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { ContextDTO } from 'projects/core/src/lib/application/ports/secondary/context.dto';
 
 @Component({
   selector: 'lib-diet-list',
@@ -32,20 +38,28 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DietListComponent {
-  diets$: Observable<DietDTO[]> = this._getsAllDietDto.getAll();
   inputState$: Observable<InputStateDTO> =
     this._inputStateDtoStorage.asObservable();
 
   readonly editingDiet: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
   });
+  diets$: Observable<DietDTO[]> = this._contextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data: ContextDTO) =>
+        this._getsAllDietDto.getAll({ eventId: data.eventId })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,
     @Inject(REMOVES_DIET_DTO) private _removesDietDto: RemovesDietDtoPort,
     @Inject(SETS_DIET_DTO) private _setsDietDto: SetsDietDtoPort,
     @Inject(INPUT_STATE_DTO_STORAGE)
-    private _inputStateDtoStorage: InputStateDtoStoragePort
+    private _inputStateDtoStorage: InputStateDtoStoragePort,
+    @Inject(CONTEXT_DTO_STORAGE)
+    private _contextDtoStoragePort: ContextDtoStoragePort
   ) {}
 
   onDeleteClicked(itemId: string): void {

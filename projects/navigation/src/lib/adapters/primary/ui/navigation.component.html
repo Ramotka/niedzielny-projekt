@@ -1,10 +1,10 @@
-<ul class="nav flex-column pt-5">
+<ul class="nav flex-column pt-5 d-flex align-items-center">
   <li class="nav-item fw-bold" *ngFor="let nav of navLink$ | async">
     <a
       class="nav-link d-inline-flex fs-6 text-decoration-none text-dark"
       [routerLink]="nav.link"
     >
-      <img class="pe-2" [src]="nav.icon" /> {{ nav.name }}
+      <img class="pe-2" [src]="nav.icon" />
     </a>
   </li>
 </ul>

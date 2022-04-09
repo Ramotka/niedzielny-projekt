@@ -13,7 +13,7 @@
     <p class="m-0">{{ event.title }}</p>
     <a [routerLink]="'/event/' + event.id">Go to Event</a>
     <p class="m-0">{{ event.date }}</p>
-    <a>Edit</a>
+    <a [routerLink]="'/event/' + event.id + '/editEvent'">Edit</a>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"

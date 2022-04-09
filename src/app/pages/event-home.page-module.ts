@@ -8,6 +8,8 @@ import { DietPageModule } from './diet.page-module';
 import { EventIdResolver } from 'projects/event/src/lib/adapters/primary/ui/event-id.resolver';
 import { NavigationComponentModule } from '../../../projects/navigation/src/lib/adapters/primary/ui/navigation.component-module';
 import { FirebaseNavLinkServiceModule } from '../../../projects/navigation/src/lib/adapters/secondary/infrastructure/firebase-nav-link.service-module';
+import { EventDashboardPage } from './event-dashboard.page';
+import { EventDashboardPageModule } from './event-dashboard.page-module';
 
 @NgModule({
   imports: [
@@ -23,6 +25,14 @@ import { FirebaseNavLinkServiceModule } from '../../../projects/navigation/src/l
           {
             path: 'diet',
             loadChildren: () => DietPageModule,
+          },
+          {
+            path: '',
+            loadChildren: () => EventDashboardPageModule,
+          },
+          {
+            path: 'dashboard',
+            loadChildren: () => EventDashboardPageModule,
           },
         ],
       },
