@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-events-list-page',
-  templateUrl: './events-list.page.html',
+  selector: 'app-event-home-page',
+  templateUrl: './event-home.page.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsListPage {}
+export class EventHomePage {}

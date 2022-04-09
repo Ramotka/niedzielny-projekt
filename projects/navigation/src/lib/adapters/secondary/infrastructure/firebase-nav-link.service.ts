@@ -14,17 +14,17 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
     return of([
       {
         name: 'Dashboard',
-        link: '/',
+        link: 'dashboard',
         icon: 'assets/icons/nav-links/dashboard.svg',
       },
       {
         name: 'Event',
-        link: '/event-form',
+        link: 'event-form',
         icon: 'assets/icons/nav-links/event.svg',
       },
       {
         name: 'Diet',
-        link: '/diet',
+        link: 'diet',
         icon: 'assets/icons/nav-links/diet.svg',
       },
       {
