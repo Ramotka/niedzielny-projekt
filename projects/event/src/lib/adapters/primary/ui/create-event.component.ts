@@ -24,6 +24,8 @@ export class CreateEventComponent {
     date: new FormControl('', Validators.required),
   });
 
+  readonly minDate: Date = new Date();
+
   constructor(
     @Inject(ADDS_EVENT_DTO) private _addsEventDto: AddsEventDtoPort
   ) {}

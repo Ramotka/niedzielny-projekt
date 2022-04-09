@@ -29,11 +29,14 @@
     </div>
     <div class="g-col-6 d-flex flex-column">
       <p>Event Date</p>
-      <input type="text"
-      placeholder="Daterangepicker"
-      class="form-control"
-      bsDaterangepicker
-      [bsConfig]="{ isAnimated: true }">
+      <input
+        type="text"
+        placeholder="Daterangepicker"
+        class="form-control"
+        bsDaterangepicker
+        [minDate]="minDate"
+        [bsConfig]="{ isAnimated: true }"
+      />
     </div>
   </div>
   <div class="text-end mt-5">
