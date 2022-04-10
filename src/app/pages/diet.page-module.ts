@@ -13,6 +13,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       {
         path: '',

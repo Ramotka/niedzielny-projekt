@@ -10,6 +10,7 @@ import { InMemoryInputStateStorageModule } from 'projects/transport/src/lib/adap
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       {
         path: '',
