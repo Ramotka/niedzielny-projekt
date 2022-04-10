@@ -10,6 +10,7 @@ import { NavigationComponentModule } from '../../../projects/navigation/src/lib/
 import { FirebaseNavLinkServiceModule } from '../../../projects/navigation/src/lib/adapters/secondary/infrastructure/firebase-nav-link.service-module';
 import { EventDashboardPage } from './event-dashboard.page';
 import { EventDashboardPageModule } from './event-dashboard.page-module';
+import { TransportPageModule } from './transport.page-module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,7 @@ import { EventDashboardPageModule } from './event-dashboard.page-module';
           },
           {
             path: 'transport',
-            loadChildren: () => EventDashboardPageModule,
+            loadChildren: () => TransportPageModule,
           },
         ],
       },
