@@ -1,16 +1,17 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { EventFormPage } from "./event-form.page";
-import { CreateEventComponentModule } from "@event";
-import { FirebaseEventServiceModule } from "@event";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { EventFormPage } from './event-form.page';
+import { CreateEventComponentModule } from '@event';
+import { FirebaseEventServiceModule } from '@event';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       {
-        path: "",
+        path: '',
         component: EventFormPage,
       },
     ]),
