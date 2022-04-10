@@ -1,0 +1,43 @@
+<div
+  class="mb-3 d-flex justify-content-start align-items-center"
+  *ngIf="event$ | async as event"
+>
+  <p class="m-0 fs-4 me-3">Event - {{ event.title }}</p>
+
+  <div class="btn-group p-1 m-0" dropdown>
+    <span
+      id="button-split"
+      type="button"
+      dropdownToggle
+      class="fs-3"
+      aria-controls="dropdown-split"
+      ><svg
+        width="20"
+        height="15"
+        viewBox="0 0 20 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0L10 15L20 0H0Z" fill="white" />
+      </svg>
+    </span>
+
+    <ul
+      id="dropdown-split"
+      *dropdownMenu
+      class="dropdown-menu"
+      role="menu"
+      aria-labelledby="button-split"
+    >
+      <li role="menuitem">
+        <a
+          [routerLink]="'/event/' + e.id"
+          class="dropdown-item"
+          *ngFor="let e of allEvents$ | async"
+        >
+          {{ e.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
