@@ -1,7 +1,9 @@
 <div
   class="container d-flex align-items-center justify-content-between mt-3 border-bottom mx-auto"
 >
-  <p class="fs-3 fw-bold me-3">Event - Dashboard</p>
+  <div class="w-50">
+    <lib-event-dropdown-list></lib-event-dropdown-list>
+  </div>
 
   <a routerLink="/">
     <svg
@@ -21,4 +23,13 @@
     </svg>
   </a>
 </div>
-<lib-event-dashboard></lib-event-dashboard>
+
+<div class="mt-4">
+  <lib-event-dashboard></lib-event-dashboard>
+</div>
+
+<div class="grid">
+  <div class="g-col-4"></div>
+  <div class="g-col-4"></div>
+  <div class="g-col-4"></div>
+</div>

@@ -1,8 +1,11 @@
 <div *ngIf="event$ | async as event">
-  <div class="w-100 d-flex justify-content-between align-items-center mt-4">
+  <div class="w-100 d-flex justify-content-between align-items-center">
     <div>
-      <p class="m-0 fs-4">Event Details - Dashboard</p>
-      <p class="m-0 fs-6">10.04.2022 - 12.04.2022</p>
+      <p class="m-0 fs-4 fw-bold">Event Details - {{ event.title }}</p>
+      <p class="m-0 fs-6">
+        {{ formatDate(event.date[0]) | date: "dd.MM.YYYY" }} -
+        {{ formatDate(event.date[1]) | date: "dd.MM.YYYY" }}
+      </p>
     </div>
 
     <button type="button" class="btn border-0">
@@ -21,7 +24,7 @@
     </button>
   </div>
 
-  <div class="mt-4 grid">
+  <div class="mt-4 grid h-25">
     <div class="g-col-5">
       <img class="img-fluid" [src]="event.imageUrl" alt="" />
     </div>
