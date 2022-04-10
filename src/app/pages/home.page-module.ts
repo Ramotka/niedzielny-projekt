@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { homePage } from './home.page';
 import { EventsListComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/events-list.component-module';
 import { FirebaseEventServiceModule } from '../../../projects/event/src/lib/adapters/secondary/infrastructure/firebase-event.service-module';
-import { EventHomePageModule } from './event-home.page-module';
 
 @NgModule({
   imports: [
