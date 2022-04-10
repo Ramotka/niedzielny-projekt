@@ -34,6 +34,7 @@ export class CreateEventComponent {
     if (createEvent.invalid) {
       return;
     }
+
     this._addsEventDto.add({
       imageUrl: createEvent.get('imageUrl')?.value,
       description: createEvent.get('description')?.value,
