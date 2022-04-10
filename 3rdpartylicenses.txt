@@ -145,6 +145,9 @@ MIT
 ngx-bootstrap/datepicker
 MIT
 
+ngx-bootstrap/dropdown
+MIT
+
 ngx-bootstrap/mini-ngrx
 MIT
 
