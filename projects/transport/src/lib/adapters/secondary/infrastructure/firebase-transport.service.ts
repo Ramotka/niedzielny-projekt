@@ -6,10 +6,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetsAllTransportDtoPort } from '../../../application/ports/secondary/gets-all-transport.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
+import { RemovesTransportDtoPort } from '../../../application/ports/secondary/removes-transport.dto-port';
+import { SetsTransportDtoPort } from '../../../application/ports/secondary/sets-transport.dto-port';
 
 @Injectable()
 export class FirebaseTransportService
-  implements AddsTransportDtoPort, GetsAllTransportDtoPort
+  implements
+    AddsTransportDtoPort,
+    GetsAllTransportDtoPort,
+    RemovesTransportDtoPort,
+    SetsTransportDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -22,5 +28,13 @@ export class FirebaseTransportService
       .collection<TransportDTO>('transports')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: TransportDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  remove(id: string): void {
+    this._client.doc('transports/' + id).delete();
+  }
+
+  set(transport: Partial<TransportDTO>): void {
+    this._client.doc('transports/' + transport.id).update(transport);
   }
 }
