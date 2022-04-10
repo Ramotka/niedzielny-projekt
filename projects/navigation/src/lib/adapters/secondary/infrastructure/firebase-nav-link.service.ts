@@ -29,7 +29,7 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
       },
       {
         name: 'Transport',
-        link: '/',
+        link: 'transport',
         icon: 'assets/icons/nav-links/transport.svg',
       },
       {

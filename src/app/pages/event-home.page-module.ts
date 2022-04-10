@@ -23,15 +23,19 @@ import { EventDashboardPageModule } from './event-dashboard.page-module';
         },
         children: [
           {
-            path: 'diet',
-            loadChildren: () => DietPageModule,
-          },
-          {
             path: '',
             loadChildren: () => EventDashboardPageModule,
           },
           {
+            path: 'diet',
+            loadChildren: () => DietPageModule,
+          },
+          {
             path: 'dashboard',
+            loadChildren: () => EventDashboardPageModule,
+          },
+          {
+            path: 'transport',
             loadChildren: () => EventDashboardPageModule,
           },
         ],
