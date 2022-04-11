@@ -1,13 +1,16 @@
-<form>
+<form *ngIf="currentEvent$ | async as currentEvent">
     <div class="grid mt-5">
       <div class="g-col-6 d-flex flex-column">
         <p>Add event image</p>
         <textarea
+        contentEditable="true"
           class="form-control pt-2"
           rows="4"
           formControlName="imageUrl"
           placeholder="Add link to your image"
-        ></textarea>
+          
+        ><img class="img-fluid" [src]="currentEvent.imageUrl" alt=""/></textarea>
+        <img class="img-fluid" [src]="currentEvent.imageUrl" alt=""/>
       </div>
       <div class="g-col-6 d-flex flex-column">
         <p>Event Description</p>
@@ -16,7 +19,7 @@
           rows="4"
           formControlName="description"
           placeholder="Write event description"
-        ></textarea>
+        >{{currentEvent.description}}</textarea>
       </div>
       <div class="g-col-6 d-flex flex-column">
         <p>Event Title</p>
@@ -24,7 +27,7 @@
           class="form-control"
           type="text"
           formControlName="title"
-          placeholder="Add event title"
+          value="{{ currentEvent.title }}"
         />
       </div>
       <div class="g-col-6 d-flex flex-column">
@@ -32,7 +35,8 @@
         <input
           type="text"
           formControlName="date"
-          placeholder="Daterangepicker"
+          placeholder=
+          '{{ formatDate(currentEvent.date[0]) | date: "dd.MM.YYYY" }} - {{ formatDate(currentEvent.date[1]) | date: "dd.MM.YYYY" }}'
           class="form-control"
           bsDaterangepicker
           [minDate]="minDate"
