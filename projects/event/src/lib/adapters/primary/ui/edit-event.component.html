@@ -7,10 +7,8 @@
           class="form-control pt-2"
           rows="4"
           formControlName="imageUrl"
-          placeholder="Add link to your image"
-          
-        ><img class="img-fluid" [src]="currentEvent.imageUrl" alt=""/></textarea>
-        <img class="img-fluid" [src]="currentEvent.imageUrl" alt=""/>
+          value="{{currentEvent.imageUrl}}"  
+        ></textarea>
       </div>
       <div class="g-col-6 d-flex flex-column">
         <p>Event Description</p>
