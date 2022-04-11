@@ -1,1 +1,52 @@
-edit event component
+<form>
+    <div class="grid mt-5">
+      <div class="g-col-6 d-flex flex-column">
+        <p>Add event image</p>
+        <textarea
+          class="form-control pt-2"
+          rows="4"
+          formControlName="imageUrl"
+          placeholder="Add link to your image"
+        ></textarea>
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Description</p>
+        <textarea
+          class="form-control pt-2"
+          rows="4"
+          formControlName="description"
+          placeholder="Write event description"
+        ></textarea>
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Title</p>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="title"
+          placeholder="Add event title"
+        />
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Date</p>
+        <input
+          type="text"
+          formControlName="date"
+          placeholder="Daterangepicker"
+          class="form-control"
+          bsDaterangepicker
+          [minDate]="minDate"
+          [bsConfig]="{ isAnimated: true }"
+        />
+      </div>
+    </div>
+    <div class="text-end mt-5">
+      <input
+        class="btn bg-success text-white"
+        type="submit"
+        value="Save changes"
+        [disabled]=""
+      />
+    </div>
+  </form>
+  
