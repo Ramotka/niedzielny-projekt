@@ -19,19 +19,27 @@
 </div>
 
 <div class="container bg-white h-100">
-  <div *ngIf="(transports$ | async)?.length as transports; else button">
-    <div class="h-100 pt-3 d-flex justify-content-start align-items-center">
-      <ul>
-        <li class="text-dark" *ngFor="let transport of transports$ | async">
-          {{ transport.name }}
-        </li>
-      </ul>
+  <div
+    class="text-center text-dark"
+    *ngIf="(transports$ | async)?.length as transports; else button"
+  >
+    <div
+      class="d-flex justify-content-between align-items-center"
+      *ngFor="let transport of transports$ | async"
+    >
+      <div class="w-75 d-flex border border-dark">
+        <p class="m-0 ps-1">{{ transport.name }}</p>
+      </div>
+
+      <div class="w-25 border border-dark">
+        <p class="m-0">0/15</p>
+      </div>
     </div>
   </div>
 </div>
 
 <ng-template #button>
   <div class="h-100 d-flex justify-content-center align-items-center">
-    <button type="button" class="btn btn-success m-5">Configure</button>
+    <a class="btn btn-success m-5" routerLink="transport">Configure</a>
   </div>
 </ng-template>
