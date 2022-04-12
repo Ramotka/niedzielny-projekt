@@ -35,7 +35,9 @@ export class EventsListComponent {
       .pipe(
         map((events) =>
           events.filter((event) =>
-            event.title.includes(searchedEvent.get('title')?.value)
+            event.title
+              .toLowerCase()
+              .includes(searchedEvent.get('title')?.value.toLowerCase())
           )
         )
       );
