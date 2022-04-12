@@ -27,7 +27,17 @@ export class FirebaseEventService
     return this._client
       .collection<EventDTO>('events')
       .valueChanges({ idField: 'id' })
-      .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
+      .pipe(
+        map((events) =>
+          criterion && criterion.title
+            ? events.filter((event) =>
+                event.title
+                  .toLowerCase()
+                  .includes(criterion?.title?.toLowerCase() as string)
+              )
+            : events
+        )
+      );
   }
 
   getOne(id: string): Observable<EventDTO> {

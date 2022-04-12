@@ -1,5 +1,8 @@
-<div class="h-100" *ngIf="events$ | async as event">
-  <div class="container-fluid w-75 mx-auto" *ngIf="event.length; else template">
+<div class="h-100">
+  <div
+    class="container-fluid w-75 mx-auto"
+    *ngIf="hasEvents$ | async; else template"
+  >
     <div
       class="container d-flex align-items-center justify-content-between border-bottom mx-auto pt-3"
     >
@@ -18,23 +21,21 @@
     </div>
 
     <div class="mt-4 w-50">
-      <form
-        class="d-flex align-items-center"
-        [formGroup]="searchedEvent"
-        (ngSubmit)="onSearchButtonSubmited(searchedEvent)"
-      >
+      <form class="d-flex align-items-center" [formGroup]="searchedEvent">
         <input
           class="me-3 ps-3 py-2 rounded border-0 w-75"
           type="text"
           formControlName="title"
           placeholder="Search event"
         />
-        <input class="btn bg-gray-400 text-dark" type="submit" value="Search" />
       </form>
     </div>
 
     <div class="container-fluid bg-white mx-auto py-4 px-5 mt-5">
-      <table class="table table-borderless text-center">
+      <table
+        class="table table-borderless text-center"
+        *ngIf="events$ | async as event"
+      >
         <thead class="bg-gray-400">
           <tr>
             <th>Event Title</th>
