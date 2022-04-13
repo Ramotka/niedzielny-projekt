@@ -1,0 +1,54 @@
+
+<form [formGroup]="editEventForm" *ngIf="editEventForm$ | async as editEventForm" (ngSubmit)="onEditEventFormSubmited(editEventForm)">
+    <div class="grid mt-5">
+      <div class="g-col-6 d-flex flex-column">
+        <p>Add event image</p>
+        <textarea
+        contentEditable="true"
+          class="form-control pt-2"
+          rows="4"
+          formControlName="imageUrl"
+         
+        ></textarea>
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Description</p>
+        <textarea
+          class="form-control pt-2"
+          rows="4"
+          formControlName="description"
+          placeholder="Write event description"
+        ></textarea>
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Title</p>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="title"
+         
+        />
+      </div>
+      <div class="g-col-6 d-flex flex-column">
+        <p>Event Date</p>
+        <input
+          type="text"
+          formControlName="date"
+          placeholder=
+          ''
+          class="form-control"
+          bsDaterangepicker
+          [minDate]="minDate"
+          [bsConfig]="{ isAnimated: true }"
+        />
+      </div>
+    </div>
+    <div class="text-end mt-5">
+      <input
+        class="btn bg-success text-white"
+        type="submit"
+        value="Save changes"
+        [disabled]=""
+      />
+    </div>
+  </form>
