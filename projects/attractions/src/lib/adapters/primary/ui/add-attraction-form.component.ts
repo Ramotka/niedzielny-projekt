@@ -3,6 +3,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-add-attraction-form',
@@ -10,4 +11,8 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddAttractionFormComponent {}
+export class AddAttractionFormComponent {
+  readonly newAttraction: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+  });
+}
