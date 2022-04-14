@@ -1,50 +1,59 @@
 import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
-} from "projects/core/src/lib/application/ports/secondary/context-dto.storage-port";
-import { ContextDTO } from "projects/core/src/lib/application/ports/secondary/context.dto";
+} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { ContextDTO } from 'projects/core/src/lib/application/ports/secondary/context.dto';
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
   OnInit,
-} from "@angular/core";
-import { Observable } from "rxjs";
-import { switchMap, map } from "rxjs/operators";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { EventDTO } from "../../../application/ports/secondary/event.dto";
+} from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ONE_EVENT_DTO,
   GetsOneEventDtoPort,
-} from "../../../application/ports/secondary/gets-one-event.dto-port";
+} from '../../../application/ports/secondary/gets-one-event.dto-port';
 import {
   SETS_EVENT_DTO,
   SetsEventDtoPort,
-} from "../../../application/ports/secondary/sets-event.dto-port";
-import { Router } from "@angular/router";
+} from '../../../application/ports/secondary/sets-event.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "lib-edit-event",
-  templateUrl: "./edit-event.component.html",
+  selector: 'lib-edit-event',
+  templateUrl: './edit-event.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditEventComponent implements OnInit {
-  editEventForm$: Observable<
-    FormGroup
-  > = this._contextDtoStoragePort.asObservable().pipe(
-    switchMap((data: ContextDTO) => this._getsOneEventDto.getOne(data.eventId)),
-    map((eventDTO: EventDTO) => {
-      return new FormGroup({
-        imageUrl: new FormControl(eventDTO.imageUrl, Validators.required),
-        description: new FormControl(eventDTO.description, Validators.required),
-        title: new FormControl(eventDTO.title, Validators.required),
-        date: new FormControl(eventDTO.date, Validators.required),
-        id: new FormControl(eventDTO.id),
-      });
-    })
-  );
+  editEventForm$: Observable<FormGroup> = this._contextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data: ContextDTO) =>
+        this._getsOneEventDto.getOne(data.eventId)
+      ),
+      map((eventDTO: EventDTO) => {
+        console.log(eventDTO);
+        return new FormGroup({
+          imageUrl: new FormControl(eventDTO.imageUrl, Validators.required),
+          description: new FormControl(
+            eventDTO.description,
+            Validators.required
+          ),
+          title: new FormControl(eventDTO.title, Validators.required),
+          date: new FormControl(
+            [eventDTO.fromDate, eventDTO.toDate],
+            Validators.required
+          ),
+          id: new FormControl(eventDTO.id),
+        });
+      })
+    );
 
   constructor(
     @Inject(GETS_ONE_EVENT_DTO) private _getsOneEventDto: GetsOneEventDtoPort,
@@ -62,13 +71,15 @@ export class EditEventComponent implements OnInit {
   }
 
   onEditEventFormSubmited(editEventForm: FormGroup): void {
+    const dateRange = editEventForm.get('date')?.value;
     this._setsEventDto.set({
-      id: editEventForm.get("id")?.value,
-      imageUrl: editEventForm.get("imageUrl")?.value,
-      description: editEventForm.get("description")?.value,
-      title: editEventForm.get("title")?.value,
-      date: editEventForm.get("date")?.value,
+      id: editEventForm.get('id')?.value,
+      imageUrl: editEventForm.get('imageUrl')?.value,
+      description: editEventForm.get('description')?.value,
+      title: editEventForm.get('title')?.value,
+      fromDate: dateRange[0],
+      toDate: dateRange[1],
     });
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 }
