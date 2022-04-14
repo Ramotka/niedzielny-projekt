@@ -1,4 +1,20 @@
-<form [formGroup]="newAttraction">
-    <input type="text" formControlName="test" placeholder="Test">
-    <input type="submit" value="Submit">
+<form 
+class="pb-5 d-flex flex-column align-items-end w-25 mt-4" 
+[formGroup]="newAttraction" 
+*ngIf="currentEvent$ | async as event"
+(ngSubmit)="onNewAttractionSubmited(newAttraction, event.eventId)"
+>
+    <p class="fs-6 my-2 align-self-start">Add your attraction</p>
+    <input 
+        class="ps-2 mb-3 w-100"
+        type="text" 
+        formControlName="name" 
+        placeholder="Add your attraction"
+    />
+    <input 
+        class="bg-success btn w-50 text-white" 
+        type="submit" 
+        value="Save changes"
+        [disabled]="newAttraction.invalid"
+    />
 </form>

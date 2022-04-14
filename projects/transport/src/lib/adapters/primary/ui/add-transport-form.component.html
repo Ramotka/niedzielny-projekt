@@ -4,12 +4,17 @@
   *ngIf="currentEvent$ | async as event"
   (ngSubmit)="onNewTransportButtonSubmited(newTransport, event.eventId)"
 >
-  <p class="fs-6 my-2 align-self-start">Add your diet</p>
+  <p class="fs-6 my-2 align-self-start">Add your transport options</p>
   <input
     class="ps-2 mb-3 w-100"
     type="text"
     formControlName="name"
     placeholder="Add your transport option"
   />
-  <input class="bg-success btn w-50" type="submit" value="Save changes" />
+  <input 
+  class="bg-success btn w-50 text-white" 
+  type="submit" 
+  value="Save changes"
+  [disabled]="newTransport.invalid"
+  />
 </form>

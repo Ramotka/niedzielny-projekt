@@ -12,9 +12,9 @@
     placeholder="Add your diet"
   />
   <input
-    class="bg-success btn w-50"
+    class="bg-success btn w-50 text-white"
     type="submit"
     value="Save changes"
-    [disabled]="!newDiet.valid"
+    [disabled]="newDiet.invalid"
   />
 </form>
