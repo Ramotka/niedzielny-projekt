@@ -8,9 +8,10 @@ import { DietPageModule } from './diet.page-module';
 import { EventIdResolver } from 'projects/event/src/lib/adapters/primary/ui/event-id.resolver';
 import { NavigationComponentModule } from '../../../projects/navigation/src/lib/adapters/primary/ui/navigation.component-module';
 import { FirebaseNavLinkServiceModule } from '../../../projects/navigation/src/lib/adapters/secondary/infrastructure/firebase-nav-link.service-module';
-import { EventDashboardPage } from './event-dashboard.page';
 import { EventDashboardPageModule } from './event-dashboard.page-module';
 import { TransportPageModule } from './transport.page-module';
+import { EditEventPageModule } from './edit-event.page-module';
+import { AttractionsPageModule } from './attractions.page-module';
 
 @NgModule({
   imports: [
@@ -38,6 +39,14 @@ import { TransportPageModule } from './transport.page-module';
           {
             path: 'transport',
             loadChildren: () => TransportPageModule,
+          },
+          {
+            path: 'edit-event',
+            loadChildren: () => EditEventPageModule,
+          },
+          {
+            path: 'attractions',
+            loadChildren: () => AttractionsPageModule,
           },
         ],
       },

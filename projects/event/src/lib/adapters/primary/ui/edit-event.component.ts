@@ -1,0 +1,74 @@
+import {
+  CONTEXT_DTO_STORAGE,
+  ContextDtoStoragePort,
+} from "projects/core/src/lib/application/ports/secondary/context-dto.storage-port";
+import { ContextDTO } from "projects/core/src/lib/application/ports/secondary/context.dto";
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Inject,
+  OnInit,
+} from "@angular/core";
+import { Observable } from "rxjs";
+import { switchMap, map } from "rxjs/operators";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { EventDTO } from "../../../application/ports/secondary/event.dto";
+import {
+  GETS_ONE_EVENT_DTO,
+  GetsOneEventDtoPort,
+} from "../../../application/ports/secondary/gets-one-event.dto-port";
+import {
+  SETS_EVENT_DTO,
+  SetsEventDtoPort,
+} from "../../../application/ports/secondary/sets-event.dto-port";
+import { Router } from "@angular/router";
+
+@Component({
+  selector: "lib-edit-event",
+  templateUrl: "./edit-event.component.html",
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class EditEventComponent implements OnInit {
+  editEventForm$: Observable<
+    FormGroup
+  > = this._contextDtoStoragePort.asObservable().pipe(
+    switchMap((data: ContextDTO) => this._getsOneEventDto.getOne(data.eventId)),
+    map((eventDTO: EventDTO) => {
+      return new FormGroup({
+        imageUrl: new FormControl(eventDTO.imageUrl, Validators.required),
+        description: new FormControl(eventDTO.description, Validators.required),
+        title: new FormControl(eventDTO.title, Validators.required),
+        date: new FormControl(eventDTO.date, Validators.required),
+        id: new FormControl(eventDTO.id),
+      });
+    })
+  );
+
+  constructor(
+    @Inject(GETS_ONE_EVENT_DTO) private _getsOneEventDto: GetsOneEventDtoPort,
+    @Inject(CONTEXT_DTO_STORAGE)
+    private _contextDtoStoragePort: ContextDtoStoragePort,
+    @Inject(SETS_EVENT_DTO) private _setsEventDto: SetsEventDtoPort,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {}
+  readonly minDate: Date = new Date();
+
+  formatDate(obj: any): Date {
+    return obj.toDate();
+  }
+
+  onEditEventFormSubmited(editEventForm: FormGroup): void {
+    this._setsEventDto.set({
+      id: editEventForm.get("id")?.value,
+      imageUrl: editEventForm.get("imageUrl")?.value,
+      description: editEventForm.get("description")?.value,
+      title: editEventForm.get("title")?.value,
+      date: editEventForm.get("date")?.value,
+    });
+    this.router.navigate(["/"]);
+  }
+}

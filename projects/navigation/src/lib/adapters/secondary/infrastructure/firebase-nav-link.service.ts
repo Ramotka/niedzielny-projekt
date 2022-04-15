@@ -1,10 +1,8 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { GetsAllNavLinkDtoPort } from '../../../application/ports/secondary/gets-all-nav-link.dto-port';
 import { NavLinkDTO } from '../../../application/ports/secondary/nav-link.dto';
-import { filterByCriterion } from '@lowgular/shared';
 
 @Injectable()
 export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
@@ -18,8 +16,8 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
         icon: 'assets/icons/nav-links/dashboard.svg',
       },
       {
-        name: 'Event',
-        link: 'event-form',
+        name: 'Edit-event',
+        link: 'edit-event',
         icon: 'assets/icons/nav-links/event.svg',
       },
       {
@@ -34,7 +32,7 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
       },
       {
         name: 'Attractions',
-        link: '/',
+        link: 'attractions',
         icon: 'assets/icons/nav-links/attractions.svg',
       },
       {
