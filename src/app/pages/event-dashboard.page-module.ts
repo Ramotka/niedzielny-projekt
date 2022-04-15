@@ -11,6 +11,8 @@ import { DietListComponentModule } from '../../../projects/diet/src/lib/adapters
 import { EventsListComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/events-list.component-module';
 import { TransportCardComponentModule } from '../../../projects/transport/src/lib/adapters/primary/ui/transport-card.component-module';
 import { FirebaseTransportServiceModule } from '../../../projects/transport/src/lib/adapters/secondary/infrastructure/firebase-transport.service-module';
+import { AttractionsCardComponentModule } from '../../../projects/attractions/src/lib/adapters/primary/ui/attractions-card.component-module';
+import { FirebaseAttractionsServiceModule } from '@attractions';
 
 @NgModule({
   imports: [
@@ -26,10 +28,10 @@ import { FirebaseTransportServiceModule } from '../../../projects/transport/src/
     EventDropdownListComponentModule,
     DietCardComponentModule,
     FirebaseDietServiceModule,
-    DietListComponentModule,
-    EventsListComponentModule,
     TransportCardComponentModule,
     FirebaseTransportServiceModule,
+    AttractionsCardComponentModule,
+    FirebaseAttractionsServiceModule,
   ],
   declarations: [EventDashboardPage],
   providers: [],
