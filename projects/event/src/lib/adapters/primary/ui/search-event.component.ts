@@ -1,16 +1,16 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, Observable, startWith, switchMap } from 'rxjs';
-import { EventDTO } from '../../../application/ports/secondary/event.dto';
+import { debounceTime, startWith, Subscription } from 'rxjs';
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
+  OnDestroy,
 } from '@angular/core';
 import {
-  GETS_ALL_EVENT_DTO,
-  GetsAllEventDtoPort,
-} from '../../../application/ports/secondary/gets-all-event.dto-port';
+  SearchDtoStoragePort,
+  SEARCH_DTO_STORAGE,
+} from '../../../application/ports/secondary/search-dto.storage-port';
 
 @Component({
   selector: 'lib-search-event',
@@ -18,22 +18,22 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchEventComponent {
+export class SearchEventComponent implements OnDestroy {
   readonly searchedEvent: FormGroup = new FormGroup({
     title: new FormControl(''),
   });
 
-  events$: Observable<EventDTO[]> = this.searchedEvent.valueChanges.pipe(
-    startWith({ title: '' }),
-    debounceTime(500),
-    switchMap((data: { title: string }) =>
-      this._getsAllEventDto.getAll(
-        data && data.title && data.title.length ? { title: data.title } : {}
-      )
-    )
-  );
+  subscription: Subscription = new Subscription();
 
   constructor(
-    @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort
-  ) {}
+    @Inject(SEARCH_DTO_STORAGE) private _searchDtoStorage: SearchDtoStoragePort
+  ) {
+    this.subscription = this.searchedEvent.valueChanges
+      .pipe(startWith({ title: '' }), debounceTime(400))
+      .subscribe((form) => this._searchDtoStorage.next({ title: form.title }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 }

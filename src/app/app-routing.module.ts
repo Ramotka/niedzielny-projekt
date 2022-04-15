@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { homePageModule } from './pages/home.page-module';
 import { EventFormPageModule } from './pages/event-form.page-module';
 import { DietPageModule } from './pages/diet.page-module';
-import { EventsListPageModule } from './pages/events-list.page-module';
 import { EventHomePageModule } from './pages/event-home.page-module';
 
 const routes: Routes = [
@@ -18,10 +17,6 @@ const routes: Routes = [
   {
     path: 'diet',
     loadChildren: () => DietPageModule,
-  },
-  {
-    path: 'event',
-    loadChildren: () => EventsListPageModule,
   },
   {
     path: 'event/:eventId',

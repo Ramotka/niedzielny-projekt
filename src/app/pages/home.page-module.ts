@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { homePage } from './home.page';
 import { EventsListComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/events-list.component-module';
 import { FirebaseEventServiceModule } from '../../../projects/event/src/lib/adapters/secondary/infrastructure/firebase-event.service-module';
+import { SearchEventComponentModule } from '../../../projects/event/src/lib/adapters/primary/ui/search-event.component-module';
+import { InMemorySearchStorageModule } from '@event';
+import { Subscription } from 'rxjs';
 
 @NgModule({
   imports: [
@@ -16,6 +19,8 @@ import { FirebaseEventServiceModule } from '../../../projects/event/src/lib/adap
     ]),
     EventsListComponentModule,
     FirebaseEventServiceModule,
+    SearchEventComponentModule,
+    InMemorySearchStorageModule,
   ],
   declarations: [homePage],
   providers: [],
