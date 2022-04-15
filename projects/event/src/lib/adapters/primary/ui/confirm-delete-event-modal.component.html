@@ -1,0 +1,26 @@
+<div
+  class="bg-white d-flex justify-content-center align-items-center flex-column py-4 mt-5"
+>
+  <div class="my-5">Are you sure you want to delete your event?</div>
+
+  <div class="my-3 w-50">
+    <button
+      type="button"
+      class="btn btn-danger w-100"
+      *ngIf="event$ | async as event"
+      (click)="onConfirmDeleteTaskButtonClicked(event.eventId)"
+    >
+      Yes, I am sure
+    </button>
+  </div>
+
+  <div class="mb-5 w-50">
+    <button
+      type="button"
+      class="btn bg-gray-400 w-100"
+      (click)="onCancelButtonClicked()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
