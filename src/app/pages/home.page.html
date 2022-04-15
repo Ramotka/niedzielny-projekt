@@ -1,1 +1,40 @@
-<lib-events-list></lib-events-list>
+<div class="h-100">
+  <div
+    class="container-fluid w-75 mx-auto"
+    *ngIf="hasEvents$ | async; else template"
+  >
+    <div
+      class="container d-flex align-items-center justify-content-between border-bottom mx-auto pt-3"
+    >
+      <div class="d-flex justify-content-start align-items-center">
+        <p class="fs-3 fw-bold me-5">Events</p>
+        <p class="fs-3 fw-bold">Users</p>
+      </div>
+
+      <div class="py-3">
+        <a routerLink="/event-form"
+          ><button type="button" class="btn btn-success">
+            Create new event
+          </button></a
+        >
+      </div>
+    </div>
+
+    <lib-search-event></lib-search-event>
+
+    <lib-events-list></lib-events-list>
+  </div>
+</div>
+
+<ng-template #template>
+  <div
+    class="container-fluid w-75 mx-auto d-flex justify-content-center align-items-center flex-column my-auto h-75"
+  >
+    <h1>Start building your dashboard</h1>
+
+    <p>Create your first event</p>
+    <a class="btn bg-success text-white" routerLink="/event-form" role="button"
+      >Create event</a
+    >
+  </div>
+</ng-template>

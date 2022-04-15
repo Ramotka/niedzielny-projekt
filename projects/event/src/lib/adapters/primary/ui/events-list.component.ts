@@ -4,14 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import {
-  debounce,
-  debounceTime,
-  map,
-  Observable,
-  startWith,
-  switchMap,
-} from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
@@ -22,6 +15,10 @@ import {
   REMOVES_EVENT_DTO,
   RemovesEventDtoPort,
 } from '../../../application/ports/secondary/removes-event.dto-port';
+import {
+  SearchDtoStoragePort,
+  SEARCH_DTO_STORAGE,
+} from '../../../application/ports/secondary/search-dto.storage-port';
 
 @Component({
   selector: 'lib-events-list',
@@ -30,27 +27,21 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  readonly searchedEvent: FormGroup = new FormGroup({
-    title: new FormControl(''),
-  });
-
-  events$: Observable<EventDTO[]> = this.searchedEvent.valueChanges.pipe(
-    startWith({ title: '' }),
-    debounceTime(500),
-    switchMap((data: { title: string }) =>
-      this._getsAllEventDto.getAll(
-        data && data.title && data.title.length ? { title: data.title } : {}
+  events$: Observable<EventDTO[]> = this._searchDtoStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDto.getAll(
+          data && data.title && data.title.length ? { title: data.title } : {}
+        )
       )
-    )
-  );
-
-  hasEvents$: Observable<boolean> = this._getsAllEventDto
-    .getAll()
-    .pipe(map((data) => data.length > 0));
+    );
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
-    @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort
+    @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort,
+    @Inject(SEARCH_DTO_STORAGE)
+    private _searchDtoStorage: SearchDtoStoragePort
   ) {}
 
   onDeleteButtonClicked(eventId: string): void {
