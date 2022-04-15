@@ -7,4 +7,3 @@ export * from './lib/adapters/primary/ui/event-dropdown-list.component-module';
 export * from './lib/adapters/primary/ui/search-event.component-module';
 export * from './lib/adapters/secondary/infrastructure/in-memory-search.storage-module';
 export * from './lib/adapters/primary/ui/edit-event.component-module';
-
