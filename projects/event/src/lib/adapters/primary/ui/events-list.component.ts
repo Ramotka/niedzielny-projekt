@@ -4,7 +4,14 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import {
+  debounce,
+  debounceTime,
+  map,
+  Observable,
+  startWith,
+  switchMap,
+} from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
@@ -23,23 +30,23 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
-
   readonly searchedEvent: FormGroup = new FormGroup({
-    title: new FormControl(),
+    title: new FormControl(''),
   });
 
-  onSearchButtonSubmited(searchedEvent: FormGroup) {
-    this.events$ = this._getsAllEventDto
-      .getAll()
-      .pipe(
-        map((events) =>
-          events.filter((event) =>
-            event.title.includes(searchedEvent.get('title')?.value)
-          )
-        )
-      );
-  }
+  events$: Observable<EventDTO[]> = this.searchedEvent.valueChanges.pipe(
+    startWith({ title: '' }),
+    debounceTime(500),
+    switchMap((data: { title: string }) =>
+      this._getsAllEventDto.getAll(
+        data && data.title && data.title.length ? { title: data.title } : {}
+      )
+    )
+  );
+
+  hasEvents$: Observable<boolean> = this._getsAllEventDto
+    .getAll()
+    .pipe(map((data) => data.length > 0));
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
