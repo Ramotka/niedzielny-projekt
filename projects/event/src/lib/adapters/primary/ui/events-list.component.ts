@@ -19,6 +19,12 @@ import {
   SearchDtoStoragePort,
   SEARCH_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-dto.storage-port';
+import {
+  ContextDtoStoragePort,
+  CONTEXT_DTO_STORAGE,
+} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ConfirmDeleteEventModalComponent } from './confirm-delete-event-modal.component';
 
 @Component({
   selector: 'lib-events-list',
@@ -41,11 +47,20 @@ export class EventsListComponent {
     @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
     @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort,
     @Inject(SEARCH_DTO_STORAGE)
-    private _searchDtoStorage: SearchDtoStoragePort
+    private _searchDtoStorage: SearchDtoStoragePort,
+    @Inject(CONTEXT_DTO_STORAGE)
+    private _contextDtoStoragePort: ContextDtoStoragePort,
+    private modalService: BsModalService
   ) {}
 
+  modalRef?: BsModalRef;
+  // onDeleteButtonClicked(eventId: string): void {
+  //   this._removesEventDto.remove(eventId);
+  // }
+
   onDeleteButtonClicked(eventId: string): void {
-    this._removesEventDto.remove(eventId);
+    this._contextDtoStoragePort.next({ eventId: eventId });
+    this.modalRef = this.modalService.show(ConfirmDeleteEventModalComponent);
   }
 
   formatDate(obj: any): Date {
