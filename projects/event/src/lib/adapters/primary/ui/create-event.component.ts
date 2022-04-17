@@ -35,11 +35,14 @@ export class CreateEventComponent {
       return;
     }
 
+    const dateRange = createEvent.get('date')?.value;
+
     this._addsEventDto.add({
       imageUrl: createEvent.get('imageUrl')?.value,
       description: createEvent.get('description')?.value,
       title: createEvent.get('title')?.value,
-      date: createEvent.get('date')?.value,
+      fromDate: dateRange[0],
+      toDate: dateRange[1],
     });
     this.createEvent.reset();
   }

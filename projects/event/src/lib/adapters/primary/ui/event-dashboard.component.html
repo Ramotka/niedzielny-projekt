@@ -3,8 +3,8 @@
     <div>
       <p class="m-0 fs-4 fw-bold">Event Details - {{ event.title }}</p>
       <p class="m-0 fs-6">
-        {{ formatDate(event.date[0]) | date: "dd.MM.YYYY" }} -
-        {{ formatDate(event.date[1]) | date: "dd.MM.YYYY" }}
+        {{ event.fromDate | date: "dd.MM.YYYY" }} -
+        {{ event.toDate | date: "dd.MM.YYYY" }}
       </p>
     </div>
 
