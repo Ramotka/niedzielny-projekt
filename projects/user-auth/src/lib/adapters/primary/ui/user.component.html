@@ -1,0 +1,13 @@
+<h2>{{ user$ | async | json }}</h2>
+<form [formGroup]="login" (ngSubmit)="onLoginSubmited(login)">
+  <input type="text" formControlName="email" placeholder="Email" />
+  <input
+    type="password"
+    formControlName="password"
+    placeholder="Password"
+  /><input type="submit" value="Submit" />
+</form>
+
+<div class="container">
+  <button class="btn btn-primary" (click)="onSignOutClicked()">Sign Out</button>
+</div>
