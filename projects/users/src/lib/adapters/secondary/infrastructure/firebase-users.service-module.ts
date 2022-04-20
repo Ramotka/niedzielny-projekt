@@ -4,6 +4,7 @@ import { FirebaseUsersService } from './firebase-users.service';
 import { ADDS_USER_DTO } from '../../../application/ports/secondary/adds-user.dto-port';
 import { GETS_ALL_USER_DTO } from '../../../application/ports/secondary/gets-all-user.dto-port';
 import { REMOVES_USER_DTO } from '../../../application/ports/secondary/removes-user.dto-port';
+import { SETS_USER_DTO } from '../../../application/ports/secondary/sets-user.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -13,6 +14,7 @@ import { REMOVES_USER_DTO } from '../../../application/ports/secondary/removes-u
     { provide: ADDS_USER_DTO, useExisting: FirebaseUsersService },
     { provide: GETS_ALL_USER_DTO, useExisting: FirebaseUsersService },
     { provide: REMOVES_USER_DTO, useExisting: FirebaseUsersService },
+    { provide: SETS_USER_DTO, useExisting: FirebaseUsersService },
   ],
   exports: [],
 })

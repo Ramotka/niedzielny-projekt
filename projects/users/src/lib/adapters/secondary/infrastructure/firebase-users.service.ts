@@ -7,10 +7,15 @@ import { map } from 'rxjs/operators';
 import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-all-user.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
+import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
 
 @Injectable()
 export class FirebaseUsersService
-  implements AddsUserDtoPort, GetsAllUserDtoPort, RemovesUserDtoPort
+  implements
+    AddsUserDtoPort,
+    GetsAllUserDtoPort,
+    RemovesUserDtoPort,
+    SetsUserDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -27,5 +32,9 @@ export class FirebaseUsersService
 
   remove(id: string): void {
     this._client.doc('users/' + id).delete();
+  }
+
+  set(user: Partial<UserDTO>): void {
+    this._client.doc('users/' + user.id).update(user);
   }
 }
