@@ -10,6 +10,10 @@ import {
   GETS_ALL_USER_DTO,
   GetsAllUserDtoPort,
 } from '../../../application/ports/secondary/gets-all-user.dto-port';
+import {
+  REMOVES_USER_DTO,
+  RemovesUserDtoPort,
+} from '../../../application/ports/secondary/removes-user.dto-port';
 
 @Component({
   selector: 'lib-users-list',
@@ -21,6 +25,11 @@ export class UsersListComponent {
   usersList$: Observable<UserDTO[]> = this._getsAllUserDto.getAll();
 
   constructor(
-    @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort
+    @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort,
+    @Inject(REMOVES_USER_DTO) private _removesUserDto: RemovesUserDtoPort
   ) {}
+
+  onDeleteUserClicked(userId: string): void {
+    this._removesUserDto.remove(userId);
+  }
 }
