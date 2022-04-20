@@ -24,6 +24,11 @@ import {
 } from '../../../application/ports/secondary/input-state-dto.storage-port';
 import { InputStateDTO } from '../../../application/ports/secondary/input-state.dto';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
+import {
+  CONTEXT_DTO_STORAGE,
+  ContextDtoStoragePort,
+} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
 
 @Component({
   selector: 'lib-users-list',
@@ -32,10 +37,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
-  usersList$: Observable<UserDTO[]> = this._getsAllUserDto.getAll();
-
   inputState$: Observable<InputStateDTO> =
     this._inputStateDtoStorage.asObservable();
+
+  usersList$: Observable<UserDTO[]> = this._contextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllUserDto.getAll({ eventId: data.eventId })
+      )
+    );
 
   readonly editingUserForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -48,7 +59,9 @@ export class UsersListComponent {
     @Inject(REMOVES_USER_DTO) private _removesUserDto: RemovesUserDtoPort,
     @Inject(SETS_USER_DTO) private _setsUserDto: SetsUserDtoPort,
     @Inject(INPUT_STATE_DTO_STORAGE)
-    private _inputStateDtoStorage: InputStateDtoStoragePort
+    private _inputStateDtoStorage: InputStateDtoStoragePort,
+    @Inject(CONTEXT_DTO_STORAGE)
+    private _contextDtoStoragePort: ContextDtoStoragePort
   ) {}
 
   onDeleteUserClicked(userId: string): void {
