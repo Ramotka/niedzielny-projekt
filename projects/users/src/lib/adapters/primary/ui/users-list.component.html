@@ -1,0 +1,95 @@
+<div class="list-group w-50 py-5">
+
+  <div
+      class="w-75 border-0 d-flex justify-content-between align-items-center"
+      *ngFor="let user of usersList$ | async"
+  >
+    <div class="w-100" *ngIf="inputState$ | async as inputState; else template">
+      <div
+        *ngIf="
+          inputState.userId === user.id && inputState.isEditing;
+          then editing;
+          else notEditing
+        "
+      ></div>
+    </div>
+
+    <ng-template #editing>
+      <form
+        [formGroup]="editingUserForm"
+        class="d-flex justify-content-between align-items-center mb-1"
+      >
+        <input class="fs-6 ps-2 me-1" type="text" formControlName="name" />
+        <input class="fs-6 ps-2 me-1" type="text" formControlName="lastName" />
+        <input class="fs-6 ps-2 me-3" type="text" formControlName="email" />
+        <input
+          class="bg-success btn text-white"
+          type="submit"
+          value="Save changes"
+          [disabled]="editingUserForm.invalid"
+          (click)="onSaveEditedUserClicked(user)"
+        />
+      </form>
+    </ng-template>
+
+  <ng-template #template #notEditing>
+    <div class="w-100 d-flex align-items-center justify-content-between mb-1">
+        <div class="d-flex align-items-center">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 0C11.2311 0 8.52431 0.821086 6.22202 2.35943C3.91973 3.89777 2.12532 6.08427 1.06569 8.64243C0.00606596 11.2006 -0.271181 14.0155 0.269012 16.7313C0.809205 19.447 2.14258 21.9416 4.10051 23.8995C6.05845 25.8574 8.55301 27.1908 11.2687 27.731C13.9845 28.2712 16.7994 27.9939 19.3576 26.9343C21.9157 25.8747 24.1022 24.0803 25.6406 21.778C27.1789 19.4757 28 16.7689 28 14C27.9958 10.2883 26.5194 6.72977 23.8948 4.10518C21.2702 1.48059 17.7117 0.00423472 14 0ZM21.992 22.926C21.9721 21.6143 21.4377 20.363 20.5039 19.4416C19.5702 18.5202 18.3118 18.0025 17 18H11C9.68819 18.0025 8.42984 18.5202 7.4961 19.4416C6.56235 20.363 6.02794 21.6143 6.00801 22.926C4.19457 21.3067 2.91574 19.1749 2.34084 16.8127C1.76594 14.4505 1.92211 11.9693 2.78864 9.69786C3.65518 7.42637 5.19123 5.47167 7.19338 4.09257C9.19553 2.71347 11.5693 1.97503 14.0005 1.97503C16.4317 1.97503 18.8055 2.71347 20.8076 4.09257C22.8098 5.47167 24.3458 7.42637 25.2124 9.69786C26.0789 11.9693 26.2351 14.4505 25.6602 16.8127C25.0853 19.1749 23.8064 21.3067 21.993 22.926H21.992Z" fill="white"/>
+            </svg>
+        <div class="d-flex flex-column">
+          <p class="ms-4 my-0 fs-5">{{ user.name }} {{ user.lastName }}</p>
+          <p class="ms-4 my-0">{{ user.email }}</p>
+        </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn border-0"
+            (click)="onEditUserClicked(user)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-pencil text-white"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+              />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="btn border-0"
+            (click)="onDeleteUserClicked(user.id)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-trash fs-6 text-white"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+              />
+            </svg>
+          </button>
+        </div>
+    </div>
+  </ng-template>
+
+  </div>
+
+</div>

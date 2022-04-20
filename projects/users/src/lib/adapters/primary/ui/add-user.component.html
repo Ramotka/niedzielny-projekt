@@ -1,0 +1,14 @@
+<form 
+    class="my-3 d-flex flex-column align-items-end" 
+    [formGroup]="newUser" 
+    *ngIf="currentEvent$ | async as event"
+    (ngSubmit)="onNewUserSubmited(newUser, event.eventId)"
+>
+<div class="d-flex ps-2 mb-3">
+    <input class="me-3 w-50" type="text" formControlName="name" placeholder="Name">
+    <input class="me-3 w-50" type="text" formControlName="lastName" placeholder="Last Name">
+    <input class="w-100" type="text" formControlName="email" placeholder="Email">
+</div>
+
+    <input class="bg-success btn text-white" type="submit" value="Add member" [disabled]="newUser.invalid">
+</form>
