@@ -54,9 +54,6 @@ export class EventsListComponent {
   ) {}
 
   modalRef?: BsModalRef;
-  // onDeleteButtonClicked(eventId: string): void {
-  //   this._removesEventDto.remove(eventId);
-  // }
 
   onDeleteButtonClicked(eventId: string): void {
     this._contextDtoStoragePort.next({ eventId: eventId });
