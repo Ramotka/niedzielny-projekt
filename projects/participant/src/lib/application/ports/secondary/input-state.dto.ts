@@ -1,4 +1,4 @@
 export interface InputStateDTO {
-  readonly userId: string;
+  readonly id: string;
   readonly isEditing: boolean;
 }
