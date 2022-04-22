@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { UserComponentModule } from '../../../../user-auth/src/lib/adapters/primary/ui/user.component-module';
 import { FirebaseAuthServiceModule } from '../../../../user-auth/src/lib/adapters/secondary/infrastructure/firebase-auth.service-module';
+import { CreateUserComponentModule } from '../../../../user-auth/src/lib/adapters/primary/ui/create-user.component-module';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       {
         path: '',
@@ -16,6 +18,7 @@ import { FirebaseAuthServiceModule } from '../../../../user-auth/src/lib/adapter
     ]),
     UserComponentModule,
     FirebaseAuthServiceModule,
+    CreateUserComponentModule,
   ],
   declarations: [HomePage],
   providers: [],
