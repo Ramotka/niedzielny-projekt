@@ -6,10 +6,10 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/compat/auth-guard';
-import { ProfileUserPageModule } from './pages/profile-user.page-module';
 import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { RegisterPageModule } from './pages/register.page-module';
+import { UserDetailsPageModule } from './pages/user-details.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => ProfileUserPageModule,
+    loadChildren: () => UserDetailsPageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
