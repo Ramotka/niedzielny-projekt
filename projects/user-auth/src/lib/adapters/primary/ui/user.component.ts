@@ -4,21 +4,12 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
-import { UserDTO } from '../../../application/ports/secondary/user.dto';
-import {
-  GETS_ONE_USER_DTO,
-  GetsOneUserDtoPort,
-} from '../../../application/ports/secondary/gets-one-user.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   ADDS_CREDENTIALS_DTO,
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
-import {
-  REMOVES_CREDENTIALS_DTO,
-  RemovesCredentialsDtoPort,
-} from '../../../application/ports/secondary/removes-credentials.dto-port';
 
 @Component({
   selector: 'lib-user',
@@ -27,28 +18,23 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
-  user$: Observable<UserDTO | null> = this._getsOneUserDto.getOne();
   readonly login: FormGroup = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl(),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
-    @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort,
     @Inject(ADDS_CREDENTIALS_DTO)
     private _addsCredentialsDto: AddsCredentialsDtoPort,
-    @Inject(REMOVES_CREDENTIALS_DTO)
-    private _removesCredentialsDto: RemovesCredentialsDtoPort
+    private _router: Router
   ) {}
 
   onLoginSubmited(login: FormGroup): void {
-    this._addsCredentialsDto.add({
-      email: login.get('email')?.value,
-      password: login.get('password')?.value,
-    });
-  }
-
-  onSignOutClicked(): void {
-    this._removesCredentialsDto.remove();
+    this._addsCredentialsDto
+      .add({
+        email: login.get('email')?.value,
+        password: login.get('password')?.value,
+      })
+      .subscribe(() => this._router.navigate(['profile']));
   }
 }
