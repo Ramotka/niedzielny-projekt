@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserDetailsPage } from './user-details.page';
 import { CreateUserDetailsComponentModule } from 'projects/user-details/src/lib/adapters/primary/ui/create-user-details.component-module';
+import { FirebaseUserDetailsServiceModule } from 'projects/user-details/src/lib/adapters/secondary/infrastructure/firebase-user-details.service-module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { CreateUserDetailsComponentModule } from 'projects/user-details/src/lib/
       },
     ]),
     CreateUserDetailsComponentModule,
+    FirebaseUserDetailsServiceModule,
   ],
   declarations: [UserDetailsPage],
   providers: [],
