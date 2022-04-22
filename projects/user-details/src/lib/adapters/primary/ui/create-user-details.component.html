@@ -1,1 +1,15 @@
-<h2>test</h2>
+<form
+  class="mx-auto w-75 d-flex flex-column justify-content-center align-items-center"
+  [formGroup]="newUserDetails"
+>
+  <div class="mb-3 w-75">
+    <label class="form-label">Name</label>
+    <input type="email" formControlName="email" class="form-control" />
+  </div>
+  <div class="mb-3 w-75">
+    <label class="form-label">Last Name</label>
+    <input type="password" formControlName="password" class="form-control" />
+  </div>
+  <input class="btn btn-success w-75 mb-3 mt-5" type="submit" value="Save" />
+  <a class="btn btn-outline-danger w-75" routerLink="/">Log Out</a>
+</form>
