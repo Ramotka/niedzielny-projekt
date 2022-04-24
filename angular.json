@@ -96,18 +96,18 @@
     },
     "event": {
       "projectType": "library",
-      "root": "projects/event",
-      "sourceRoot": "projects/event/src",
+      "root": "libs/event",
+      "sourceRoot": "libs/event/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/event/ng-package.json" },
+          "options": { "project": "libs/event/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/event/tsconfig.lib.prod.json"
+              "tsConfig": "libs/event/tsconfig.lib.prod.json"
             },
-            "development": { "tsConfig": "projects/event/tsconfig.lib.json" }
+            "development": { "tsConfig": "libs/event/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         }
@@ -115,19 +115,19 @@
     },
     "navigation": {
       "projectType": "library",
-      "root": "projects/navigation",
-      "sourceRoot": "projects/navigation/src",
+      "root": "libs/navigation",
+      "sourceRoot": "libs/navigation/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/navigation/ng-package.json" },
+          "options": { "project": "libs/navigation/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/navigation/tsconfig.lib.prod.json"
+              "tsConfig": "libs/navigation/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/navigation/tsconfig.lib.json"
+              "tsConfig": "libs/navigation/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -136,18 +136,18 @@
     },
     "diet": {
       "projectType": "library",
-      "root": "projects/diet",
-      "sourceRoot": "projects/diet/src",
+      "root": "libs/diet",
+      "sourceRoot": "libs/diet/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/diet/ng-package.json" },
+          "options": { "project": "libs/diet/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/diet/tsconfig.lib.prod.json"
+              "tsConfig": "libs/diet/tsconfig.lib.prod.json"
             },
-            "development": { "tsConfig": "projects/diet/tsconfig.lib.json" }
+            "development": { "tsConfig": "libs/diet/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         }
@@ -155,18 +155,18 @@
     },
     "core": {
       "projectType": "library",
-      "root": "projects/core",
-      "sourceRoot": "projects/core/src",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/core/ng-package.json" },
+          "options": { "project": "libs/core/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/core/tsconfig.lib.prod.json"
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
             },
-            "development": { "tsConfig": "projects/core/tsconfig.lib.json" }
+            "development": { "tsConfig": "libs/core/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         }
@@ -174,19 +174,19 @@
     },
     "transport": {
       "projectType": "library",
-      "root": "projects/transport",
-      "sourceRoot": "projects/transport/src",
+      "root": "libs/transport",
+      "sourceRoot": "libs/transport/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/transport/ng-package.json" },
+          "options": { "project": "libs/transport/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/transport/tsconfig.lib.prod.json"
+              "tsConfig": "libs/transport/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/transport/tsconfig.lib.json"
+              "tsConfig": "libs/transport/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -195,19 +195,19 @@
     },
     "attractions": {
       "projectType": "library",
-      "root": "projects/attractions",
-      "sourceRoot": "projects/attractions/src",
+      "root": "libs/attractions",
+      "sourceRoot": "libs/attractions/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/attractions/ng-package.json" },
+          "options": { "project": "libs/attractions/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/attractions/tsconfig.lib.prod.json"
+              "tsConfig": "libs/attractions/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/attractions/tsconfig.lib.json"
+              "tsConfig": "libs/attractions/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -305,19 +305,19 @@
     },
     "user-auth": {
       "projectType": "library",
-      "root": "projects/user-auth",
-      "sourceRoot": "projects/user-auth/src",
+      "root": "libs/user-auth",
+      "sourceRoot": "libs/user-auth/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/user-auth/ng-package.json" },
+          "options": { "project": "libs/user-auth/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/user-auth/tsconfig.lib.prod.json"
+              "tsConfig": "libs/user-auth/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/user-auth/tsconfig.lib.json"
+              "tsConfig": "libs/user-auth/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -326,19 +326,19 @@
     },
     "user-details": {
       "projectType": "library",
-      "root": "projects/user-details",
-      "sourceRoot": "projects/user-details/src",
+      "root": "libs/user-details",
+      "sourceRoot": "libs/user-details/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": { "project": "projects/user-details/ng-package.json" },
+          "options": { "project": "libs/user-details/ng-package.json" },
           "configurations": {
             "production": {
-              "tsConfig": "projects/user-details/tsconfig.lib.prod.json"
+              "tsConfig": "libs/user-details/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/user-details/tsconfig.lib.json"
+              "tsConfig": "libs/user-details/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"

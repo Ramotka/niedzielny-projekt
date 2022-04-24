@@ -28,8 +28,8 @@ import { switchMap } from 'rxjs/operators';
 import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
-} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
-import { ContextDTO } from 'projects/core/src/lib/application/ports/secondary/context.dto';
+} from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { ContextDTO } from 'libs/core/src/lib/application/ports/secondary/context.dto';
 
 @Component({
   selector: 'lib-diet-list',

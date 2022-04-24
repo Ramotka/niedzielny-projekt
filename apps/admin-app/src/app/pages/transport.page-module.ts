@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TransportPage } from './transport.page';
-import { AddTransportFormComponentModule } from 'projects//transport/src/lib/adapters/primary/ui/add-transport-form.component-module';
-import { FirebaseTransportServiceModule } from 'projects/transport/src/lib/adapters/secondary/infrastructure/firebase-transport.service-module';
-import { TransportListComponentModule } from 'projects//transport/src/lib/adapters/primary/ui/transport-list.component-module';
-import { InMemoryInputStateStorageModule } from 'projects/transport/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
+import { AddTransportFormComponentModule } from 'libs//transport/src/lib/adapters/primary/ui/add-transport-form.component-module';
+import { FirebaseTransportServiceModule } from 'libs/transport/src/lib/adapters/secondary/infrastructure/firebase-transport.service-module';
+import { TransportListComponentModule } from 'libs//transport/src/lib/adapters/primary/ui/transport-list.component-module';
+import { InMemoryInputStateStorageModule } from 'libs/transport/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
 
 @NgModule({
   imports: [

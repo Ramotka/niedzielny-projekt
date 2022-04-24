@@ -4,7 +4,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InMemoryCurrentUserStorageModule } from '@core';
-import { UserIdResolverModule } from 'projects/user-auth/src/lib/adapters/primary/ui/user-id.resolver-module';
+import { UserIdResolverModule } from 'libs/user-auth/src/lib/adapters/primary/ui/user-id.resolver-module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

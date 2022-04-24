@@ -19,7 +19,7 @@ import {
   CurrentUserDtoStoragePort,
 } from '../../../../../../core/src/lib/application/ports/secondary/current-user-dto.storage-port';
 import { map, Observable, of, switchMap, take } from 'rxjs';
-import { CurrentUserDTO } from 'projects/core/src/lib/application/ports/secondary/current-user.dto';
+import { CurrentUserDTO } from 'libs/core/src/lib/application/ports/secondary/current-user.dto';
 import { Router } from '@angular/router';
 
 @Component({

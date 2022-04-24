@@ -8,8 +8,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import {
   ContextDtoStoragePort,
   CONTEXT_DTO_STORAGE,
-} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
-import { ContextDTO } from 'projects/core/src/lib/application/ports/secondary/context.dto';
+} from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { ContextDTO } from 'libs/core/src/lib/application/ports/secondary/context.dto';
 import { Observable } from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
