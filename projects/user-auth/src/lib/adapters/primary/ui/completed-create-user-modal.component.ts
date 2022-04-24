@@ -3,6 +3,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -12,9 +13,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompletedCreateUserModalComponent {
-  constructor(public modalRef?: BsModalRef) {}
+  constructor(public modalRef?: BsModalRef, private _router?: Router) {}
 
-  hideModalClicked() {
+  hideModalClicked(link: string) {
     this.modalRef?.hide();
+    this._router?.navigate([link]);
   }
 }

@@ -4,7 +4,7 @@ import { CompletedCreateUserModalComponent } from './completed-create-user-modal
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   declarations: [CompletedCreateUserModalComponent],
   providers: [],
   exports: [CompletedCreateUserModalComponent],
