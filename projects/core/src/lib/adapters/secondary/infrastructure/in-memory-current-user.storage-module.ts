@@ -5,7 +5,13 @@ import { CURRENT_USER_DTO_STORAGE } from '../../../application/ports/secondary/c
 @NgModule({
   imports: [],
   declarations: [],
-  providers: [InMemoryCurrentUserStorage, { provide: CURRENT_USER_DTO_STORAGE, useExisting: InMemoryCurrentUserStorage }],
+  providers: [
+    InMemoryCurrentUserStorage,
+    {
+      provide: CURRENT_USER_DTO_STORAGE,
+      useExisting: InMemoryCurrentUserStorage,
+    },
+  ],
   exports: [],
 })
 export class InMemoryCurrentUserStorageModule {}

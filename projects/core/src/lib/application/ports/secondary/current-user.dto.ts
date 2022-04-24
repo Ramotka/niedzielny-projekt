@@ -1,3 +1,4 @@
 export interface CurrentUserDTO {
-  readonly email: string;
+  readonly userId: string;
+  readonly userEmail: string;
 }
