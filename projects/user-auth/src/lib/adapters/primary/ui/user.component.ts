@@ -10,6 +10,17 @@ import {
   ADDS_CREDENTIALS_DTO,
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
+import {
+  CURRENT_USER_DTO_STORAGE,
+  CurrentUserDtoStoragePort,
+} from '../../../../../../core/src/lib/application/ports/secondary/current-user-dto.storage-port';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { take, Observable } from 'rxjs';
+import { UserDTO } from '../../../application/ports/secondary/user.dto';
+import {
+  GETS_ONE_USER_DTO,
+  GetsOneUserDtoPort,
+} from '../../../application/ports/secondary/gets-one-user.dto-port';
 
 @Component({
   selector: 'lib-user',
@@ -26,7 +37,10 @@ export class UserComponent {
   constructor(
     @Inject(ADDS_CREDENTIALS_DTO)
     private _addsCredentialsDto: AddsCredentialsDtoPort,
-    private _router: Router
+    @Inject(CURRENT_USER_DTO_STORAGE)
+    private _currentUserStorage: CurrentUserDtoStoragePort,
+    private _router: Router,
+    @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort
   ) {}
 
   onLoginSubmited(login: FormGroup): void {
@@ -35,6 +49,13 @@ export class UserComponent {
         email: login.get('email')?.value,
         password: login.get('password')?.value,
       })
-      .subscribe(() => this._router.navigate(['profile']));
+      .subscribe(() => {
+        this._getsOneUserDto
+          .getOne()
+          .pipe(take(1))
+          .subscribe((data) => {
+            this._router.navigate(['user/' + data?.uid + '/completeProfile']);
+          });
+      });
   }
 }
