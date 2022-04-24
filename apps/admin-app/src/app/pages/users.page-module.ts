@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsersPage } from './users.page';
 import { InMemoryInputStateStorageModule } from 'projects/participant/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
-import { AddParticipantComponentModule } from '../../../projects/participant/src/lib/adapters/primary/ui/add-participant.component-module';
-import { FirebaseParticipantServiceModule } from '../../../projects/participant/src/lib/adapters/secondary/infrastructure/firebase-participant.service-module';
+import { AddParticipantComponentModule } from 'projects//participant/src/lib/adapters/primary/ui/add-participant.component-module';
+import { FirebaseParticipantServiceModule } from 'projects//participant/src/lib/adapters/secondary/infrastructure/firebase-participant.service-module';
 import { ParticipantsListComponentModule } from '@participant';
 
 @NgModule({

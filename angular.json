@@ -9,21 +9,24 @@
         "@schematics/angular:component": { "style": "scss" },
         "@schematics/angular:application": { "strict": true }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "apps/admin-app",
+      "sourceRoot": "apps/admin-app/src",
+      "prefix": "apps/admin-app/app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/niedzielny-projekt",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "index": "apps/admin-app/src/index.html",
+            "main": "apps/admin-app/src/main.ts",
+            "polyfills": "apps/admin-app/src/polyfills.ts",
+            "tsConfig": "apps/admin-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "apps/admin-app/src/favicon.ico",
+              "apps/admin-app/src/assets"
+            ],
+            "styles": ["apps/admin-app/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
