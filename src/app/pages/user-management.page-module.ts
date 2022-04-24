@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { UsersPage } from './users.page';
+import { UserManagementPage } from './user-management.page';
 import { InMemoryInputStateStorageModule } from 'projects/participant/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
 import { AddParticipantComponentModule } from '../../../projects/participant/src/lib/adapters/primary/ui/add-participant.component-module';
 import { FirebaseParticipantServiceModule } from '../../../projects/participant/src/lib/adapters/secondary/infrastructure/firebase-participant.service-module';
@@ -17,7 +17,7 @@ import { InMemorySearchStorageModule } from '@participant';
     RouterModule.forChild([
       {
         path: '',
-        component: UsersPage,
+        component: UserManagementPage,
       },
     ]),
     InMemoryInputStateStorageModule,
@@ -27,8 +27,8 @@ import { InMemorySearchStorageModule } from '@participant';
     SearchParticipantComponentModule,
     InMemorySearchStorageModule,
   ],
-  declarations: [UsersPage],
+  declarations: [UserManagementPage],
   providers: [],
   exports: [],
 })
-export class UsersPageModule {}
+export class UserManagementPageModule {}

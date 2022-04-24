@@ -12,7 +12,7 @@ import { EventDashboardPageModule } from './event-dashboard.page-module';
 import { TransportPageModule } from './transport.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
-import { UsersPageModule } from './users.page-module';
+import { UserManagementPageModule } from './user-management.page-module';
 
 @NgModule({
   imports: [
@@ -50,8 +50,8 @@ import { UsersPageModule } from './users.page-module';
             loadChildren: () => AttractionsPageModule,
           },
           {
-            path: 'users',
-            loadChildren: () => UsersPageModule,
+            path: 'user-management',
+            loadChildren: () => UserManagementPageModule,
           },
         ],
       },
