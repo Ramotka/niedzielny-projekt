@@ -1,4 +1,3 @@
-
 {
     "compileOnSave": false,
     "compilerOptions": {
@@ -24,25 +23,25 @@
         ],
         "paths": {
             "@event": [
-                "projects/event/src/index.ts"
+                "libs/event/src/index.ts"
             ],
             "@navigation": [
-                "projects/navigation/src/index.ts"
+                "libs/navigation/src/index.ts"
             ],
             "@diet": [
-                "projects/diet/src/index.ts"
+                "libs/diet/src/index.ts"
             ],
             "@core": [
-                "projects/core/src/index.ts"
+                "libs/core/src/index.ts"
             ],
             "@transport": [
-                "projects/transport/src/index.ts"
+                "libs/transport/src/index.ts"
             ],
             "@attractions": [
-                "projects/attractions/src/index.ts"
+                "libs/attractions/src/index.ts"
             ],
             "@participant": [
-                "projects/participant/src/index.ts"
+                "libs/participant/src/index.ts"
             ]
         }
     },
@@ -53,4 +52,3 @@
         "strictTemplates": true
     }
 }
-

@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { RegisterPage } from './register.page';
 
 // import { FirebaseAuthServiceModule } from '@user-auth';
-import { CreateUserComponentModule } from 'projects/user-auth/src/lib/adapters/primary/ui/create-user.component-module';
-import { FirebaseAuthServiceModule } from 'projects/user-auth/src/lib/adapters/secondary/infrastructure/firebase-auth.service-module';
+import { CreateUserComponentModule } from 'libs/user-auth/src/lib/adapters/primary/ui/create-user.component-module';
+import { FirebaseAuthServiceModule } from 'libs/user-auth/src/lib/adapters/secondary/infrastructure/firebase-auth.service-module';
 
 @NgModule({
   imports: [

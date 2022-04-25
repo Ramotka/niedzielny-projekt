@@ -14,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
 import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
-} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+} from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 
 @Component({
   selector: 'lib-transport-card',

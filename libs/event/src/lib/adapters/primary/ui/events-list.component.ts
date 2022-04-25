@@ -22,7 +22,7 @@ import {
 import {
   ContextDtoStoragePort,
   CONTEXT_DTO_STORAGE,
-} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+} from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmDeleteEventModalComponent } from './confirm-delete-event-modal.component';
 

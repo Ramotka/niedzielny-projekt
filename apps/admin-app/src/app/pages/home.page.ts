@@ -7,7 +7,7 @@ import {
 import {
   GetsAllEventDtoPort,
   GETS_ALL_EVENT_DTO,
-} from 'projects/event/src/lib/application/ports/secondary/gets-all-event.dto-port';
+} from 'libs/event/src/lib/application/ports/secondary/gets-all-event.dto-port';
 import { map, Observable } from 'rxjs';
 
 @Component({

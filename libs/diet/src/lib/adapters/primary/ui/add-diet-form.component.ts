@@ -13,9 +13,9 @@ import {
 import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
-} from 'projects/core/src/lib/application/ports/secondary/context-dto.storage-port';
+} from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 import { Observable } from 'rxjs';
-import { ContextDTO } from 'projects/core/src/lib/application/ports/secondary/context.dto';
+import { ContextDTO } from 'libs/core/src/lib/application/ports/secondary/context.dto';
 
 @Component({
   selector: 'lib-add-diet-form',
