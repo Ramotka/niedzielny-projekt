@@ -10,6 +10,7 @@ import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { RegisterPageModule } from './pages/register.page-module';
 import { UserDetailsPageModule } from './pages/user-details.page-module';
+import { UserHomePageModule } from './pages/user-home.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
@@ -20,8 +21,8 @@ const routes: Routes = [
     loadChildren: () => HomePageModule,
   },
   {
-    path: 'profile',
-    loadChildren: () => UserDetailsPageModule,
+    path: 'user/:userId',
+    loadChildren: () => UserHomePageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
