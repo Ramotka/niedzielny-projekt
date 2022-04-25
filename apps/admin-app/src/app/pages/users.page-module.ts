@@ -5,7 +5,10 @@ import { UsersPage } from './users.page';
 import { InMemoryInputStateStorageModule } from 'libs/participant/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
 import { AddParticipantComponentModule } from 'libs//participant/src/lib/adapters/primary/ui/add-participant.component-module';
 import { FirebaseParticipantServiceModule } from 'libs//participant/src/lib/adapters/secondary/infrastructure/firebase-participant.service-module';
-import { ParticipantsListComponentModule } from '@participant';
+import {
+  ParticipantsListComponentModule,
+  SearchParticipantComponentModule,
+} from '@participant';
 
 @NgModule({
   imports: [
@@ -20,6 +23,7 @@ import { ParticipantsListComponentModule } from '@participant';
     AddParticipantComponentModule,
     ParticipantsListComponentModule,
     FirebaseParticipantServiceModule,
+    SearchParticipantComponentModule,
   ],
   declarations: [UsersPage],
   providers: [],
