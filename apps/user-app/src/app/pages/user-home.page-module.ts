@@ -6,6 +6,7 @@ import { UserIdResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-
 import { UserDetailsPageModule } from './user-details.page-module';
 import { UserIdResolverModule } from 'libs/user-auth/src/lib/adapters/primary/ui/user-id.resolver-module';
 import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adapters/secondary/infrastructure/firebase-user-details.service-module';
+import { UserEventsPageModule } from './user-events.page-module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,10 @@ import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adap
           {
             path: 'completeProfile',
             loadChildren: () => UserDetailsPageModule,
+          },
+          {
+            path: 'events',
+            loadChildren: () => UserEventsPageModule,
           },
         ],
       },
