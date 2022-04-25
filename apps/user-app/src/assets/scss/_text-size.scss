@@ -1,0 +1,12 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+.responsive-p {
+  @include media-breakpoint-down(md) {
+    padding: rfs-fluid-value(2rem);
+    font-size: rfs-fluid-value(0.7rem);
+  }
+}
+
+@import "bootstrap/scss/bootstrap";
