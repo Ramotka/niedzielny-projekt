@@ -5,9 +5,9 @@
     (ngSubmit)="onNewParticipantSubmited(newParticipant, event.eventId)"
 >
 <div class="d-flex ps-2 mb-3">
-    <input class="me-3 w-50" type="text" formControlName="name" placeholder="Name">
-    <input class="me-3 w-50" type="text" formControlName="lastName" placeholder="Last Name">
-    <input class="w-100" type="text" formControlName="email" placeholder="Email">
+    <input class="me-3 ps-2 w-50" type="text" formControlName="name" placeholder="Name">
+    <input class="me-3 ps-2 w-50" type="text" formControlName="lastName" placeholder="Last Name">
+    <input class="ps-2 w-100" type="text" formControlName="email" placeholder="Email">
 </div>
 
     <input class="bg-success btn text-white" type="submit" value="Add member" [disabled]="newParticipant.invalid">

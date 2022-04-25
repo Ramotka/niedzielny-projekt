@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EventHomePage } from './event-home.page';
-import { EventDashboardComponentModule } from 'libs//event/src/lib/adapters/primary/ui/event-dashboard.component-module';
+import { EventDashboardComponentModule } from 'libs/event/src/lib/adapters/primary/ui/event-dashboard.component-module';
 import { EventIdResolverModule, FirebaseEventServiceModule } from '@event';
 import { DietPageModule } from './diet.page-module';
 import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id.resolver';
-import { NavigationComponentModule } from 'libs//navigation/src/lib/adapters/primary/ui/navigation.component-module';
-import { FirebaseNavLinkServiceModule } from 'libs//navigation/src/lib/adapters/secondary/infrastructure/firebase-nav-link.service-module';
+import { NavigationComponentModule } from 'libs/navigation/src/lib/adapters/primary/ui/navigation.component-module';
+import { FirebaseNavLinkServiceModule } from 'libs/navigation/src/lib/adapters/secondary/infrastructure/firebase-nav-link.service-module';
 import { EventDashboardPageModule } from './event-dashboard.page-module';
 import { TransportPageModule } from './transport.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
-import { UsersPageModule } from './users.page-module';
+import { UserManagementPageModule } from './user-management.page-module';
 
 @NgModule({
   imports: [
@@ -50,8 +50,8 @@ import { UsersPageModule } from './users.page-module';
             loadChildren: () => AttractionsPageModule,
           },
           {
-            path: 'users',
-            loadChildren: () => UsersPageModule,
+            path: 'user-management',
+            loadChildren: () => UserManagementPageModule,
           },
         ],
       },
