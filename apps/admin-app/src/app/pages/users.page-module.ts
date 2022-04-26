@@ -2,13 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsersPage } from './users.page';
-import { InMemoryInputStateStorageModule } from 'libs/participant/src/lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
-import { AddParticipantComponentModule } from 'libs//participant/src/lib/adapters/primary/ui/add-participant.component-module';
-import { FirebaseParticipantServiceModule } from 'libs//participant/src/lib/adapters/secondary/infrastructure/firebase-participant.service-module';
-import {
-  ParticipantsListComponentModule,
-  SearchParticipantComponentModule,
-} from '@participant';
+import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adapters/secondary/infrastructure/firebase-user-details.service-module';
+import { UserDetailsListComponentModule } from 'libs/user-details/src/lib/adapters/primary/ui/user-details-list.component-module';
 
 @NgModule({
   imports: [
@@ -19,11 +14,8 @@ import {
         component: UsersPage,
       },
     ]),
-    InMemoryInputStateStorageModule,
-    AddParticipantComponentModule,
-    ParticipantsListComponentModule,
-    FirebaseParticipantServiceModule,
-    SearchParticipantComponentModule,
+    FirebaseUserDetailsServiceModule,
+    UserDetailsListComponentModule,
   ],
   declarations: [UsersPage],
   providers: [],

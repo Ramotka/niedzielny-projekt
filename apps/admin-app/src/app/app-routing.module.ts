@@ -4,6 +4,7 @@ import { homePageModule } from './pages/home.page-module';
 import { EventFormPageModule } from './pages/event-form.page-module';
 import { DietPageModule } from './pages/diet.page-module';
 import { EventHomePageModule } from './pages/event-home.page-module';
+import { UsersPageModule } from './pages/users.page-module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'event/:eventId',
     loadChildren: () => EventHomePageModule,
   },
+  { 
+        path: 'users', 
+        loadChildren: () => UsersPageModule
+      }
 ];
 
 @NgModule({
