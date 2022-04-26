@@ -10,6 +10,10 @@ import {
   GETS_ALL_USER_DETAILS_DTO,
   GetsAllUserDetailsDtoPort,
 } from '../../../application/ports/secondary/gets-all-user-details.dto-port';
+import {
+  REMOVES_USER_DETAILS_DTO,
+  RemovesUserDetailsDtoPort,
+} from '../../../application/ports/secondary/removes-user-details.dto-port';
 
 @Component({
   selector: 'lib-user-details-list',
@@ -23,6 +27,12 @@ export class UserDetailsListComponent {
 
   constructor(
     @Inject(GETS_ALL_USER_DETAILS_DTO)
-    private _getsAllUserDetailsDto: GetsAllUserDetailsDtoPort
+    private _getsAllUserDetailsDto: GetsAllUserDetailsDtoPort,
+    @Inject(REMOVES_USER_DETAILS_DTO)
+    private _removesUserDetailsDto: RemovesUserDetailsDtoPort
   ) {}
+
+  onDeleteUserDetailsClicked(id: string): void {
+    this._removesUserDetailsDto.remove(id);
+  }
 }
