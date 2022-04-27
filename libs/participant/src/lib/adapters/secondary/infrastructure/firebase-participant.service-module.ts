@@ -5,7 +5,6 @@ import { ADDS_PARTICIPANT_DTO } from '../../../application/ports/secondary/adds-
 import { GETS_ALL_PARTICIPANT_DTO } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import { REMOVES_PARTICIPANT_DTO } from '../../../application/ports/secondary/removes-participant.dto-port';
 import { SETS_PARTICIPANT_DTO } from '../../../application/ports/secondary/sets-participant.dto-port';
-import { GETS_ONE_PARTICIPANT_DTO } from '../../../application/ports/secondary/gets-one-participant.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -22,10 +21,6 @@ import { GETS_ONE_PARTICIPANT_DTO } from '../../../application/ports/secondary/g
       useExisting: FirebaseParticipantService,
     },
     { provide: SETS_PARTICIPANT_DTO, useExisting: FirebaseParticipantService },
-    {
-      provide: GETS_ONE_PARTICIPANT_DTO,
-      useExisting: FirebaseParticipantService,
-    },
   ],
   exports: [],
 })
