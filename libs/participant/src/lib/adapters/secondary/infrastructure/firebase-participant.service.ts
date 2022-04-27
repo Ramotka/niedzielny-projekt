@@ -8,6 +8,11 @@ import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesParticipantDtoPort } from '../../../application/ports/secondary/removes-participant.dto-port';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
+import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
+
+const mapToParticipantDTO = (prt: ParticipantDTO) => ({
+  ...prt,
+});
 
 @Injectable()
 export class FirebaseParticipantService
@@ -15,7 +20,8 @@ export class FirebaseParticipantService
     AddsParticipantDtoPort,
     GetsAllParticipantDtoPort,
     RemovesParticipantDtoPort,
-    SetsParticipantDtoPort
+    SetsParticipantDtoPort,
+    GetsOneParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -28,7 +34,16 @@ export class FirebaseParticipantService
       .collection<ParticipantDTO>('participants')
       .valueChanges({ idField: 'id' })
       .pipe(
-        map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
+        map((data: ParticipantDTO[]) =>
+          criterion && criterion.email
+            ? data.filter((participant) =>
+                participant.email
+                  .toLowerCase()
+                  .includes(criterion?.email?.toLowerCase() as string)
+              )
+            : data
+        ),
+        map((data) => data.map(mapToParticipantDTO))
       );
   }
 
@@ -38,5 +53,13 @@ export class FirebaseParticipantService
 
   set(participant: Partial<ParticipantDTO>): void {
     this._client.doc('participants/' + participant.id).update(participant);
+  }
+
+  getOne(id: string): Observable<ParticipantDTO> {
+    return (
+      this._client
+        .doc<ParticipantDTO>('participants/' + id)
+        .valueChanges({ idField: 'id' }) as Observable<ParticipantDTO>
+    ).pipe(map(mapToParticipantDTO));
   }
 }

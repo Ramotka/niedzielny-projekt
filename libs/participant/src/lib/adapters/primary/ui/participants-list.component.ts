@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
 import {
@@ -29,6 +29,10 @@ import {
   InputStateDtoStoragePort,
   INPUT_STATE_DTO_STORAGE,
 } from '../../../application/ports/secondary/input-state-dto.storage-port';
+import {
+  SearchDtoStoragePort,
+  SEARCH_DTO_STORAGE,
+} from '../../../application/ports/secondary/search-dto.storage-port';
 
 @Component({
   selector: 'lib-participants-list',
@@ -40,13 +44,17 @@ export class ParticipantsListComponent {
   inputState$: Observable<InputStateDTO> =
     this._inputStateDtoStorage.asObservable();
 
-  participantsList$: Observable<ParticipantDTO[]> = this._contextDtoStoragePort
-    .asObservable()
-    .pipe(
-      switchMap((data) =>
-        this._getsAllParticipantDto.getAll({ eventId: data.eventId })
-      )
-    );
+  participantsList$: Observable<ParticipantDTO[]> = combineLatest([
+    this._contextDtoStoragePort.asObservable(),
+    this._searchDtoStorage.asObservable(),
+  ]).pipe(
+    switchMap(([context, search]) =>
+      this._getsAllParticipantDto.getAll({
+        eventId: context.eventId,
+        email: search.email,
+      })
+    )
+  );
 
   readonly editingParticipantForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -64,7 +72,9 @@ export class ParticipantsListComponent {
     @Inject(INPUT_STATE_DTO_STORAGE)
     private _inputStateDtoStorage: InputStateDtoStoragePort,
     @Inject(CONTEXT_DTO_STORAGE)
-    private _contextDtoStoragePort: ContextDtoStoragePort
+    private _contextDtoStoragePort: ContextDtoStoragePort,
+    @Inject(SEARCH_DTO_STORAGE)
+    private _searchDtoStorage: SearchDtoStoragePort
   ) {}
 
   onDeleteParticipantClicked(id: string): void {
