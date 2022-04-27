@@ -36,7 +36,15 @@ export class FirebaseUserDetailsService
       .collection<UserDetailsDTO>('user-details')
       .valueChanges({ idField: 'id' })
       .pipe(
-        map((data: UserDetailsDTO[]) => filterByCriterion(data, criterion))
+        map((data: UserDetailsDTO[]) =>
+          criterion && criterion.email
+            ? data.filter((user) =>
+                user.email
+                  .toLowerCase()
+                  .includes(criterion?.email?.toLowerCase() as string)
+              )
+            : data
+        )
       );
   }
 

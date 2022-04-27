@@ -5,6 +5,7 @@ import { UsersPage } from './users.page';
 import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adapters/secondary/infrastructure/firebase-user-details.service-module';
 import { UserDetailsListComponentModule } from 'libs/user-details/src/lib/adapters/primary/ui/user-details-list.component-module';
 import { SearchUserDetailsComponentModule } from 'libs/user-details/src';
+import { InMemorySearchEmailStorageModule } from 'libs/user-details/src/lib/adapters/secondary/infrastructure/in-memory-search-email.storage-module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SearchUserDetailsComponentModule } from 'libs/user-details/src';
     FirebaseUserDetailsServiceModule,
     UserDetailsListComponentModule,
     SearchUserDetailsComponentModule,
+    InMemorySearchEmailStorageModule,
   ],
   declarations: [UsersPage],
   providers: [],
