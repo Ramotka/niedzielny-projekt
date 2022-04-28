@@ -5,6 +5,7 @@ import {
   Inject,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   ADDS_EVENT_DTO,
   AddsEventDtoPort,
@@ -27,7 +28,8 @@ export class CreateEventComponent {
   readonly minDate: Date = new Date();
 
   constructor(
-    @Inject(ADDS_EVENT_DTO) private _addsEventDto: AddsEventDtoPort
+    @Inject(ADDS_EVENT_DTO) private _addsEventDto: AddsEventDtoPort,
+    private router: Router
   ) {}
 
   onCreateEventSubmited(createEvent: FormGroup): void {
@@ -44,6 +46,6 @@ export class CreateEventComponent {
       fromDate: dateRange[0],
       toDate: dateRange[1],
     });
-    this.createEvent.reset();
+    this.router.navigate(['/']);
   }
 }

@@ -3,4 +3,5 @@ export interface UserDetailsDTO {
   readonly name: string;
   readonly lastName: string;
   readonly userId: string;
+  readonly id: string;
 }
