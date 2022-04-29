@@ -10,8 +10,8 @@ import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { RegisterPageModule } from './pages/register.page-module';
 import { UserDetailsPageModule } from './pages/user-details.page-module';
-import { UserHomePageModule } from './pages/user-home.page-module';
 import { UserEventsPageModule } from './pages/user-events.page-module';
+import { EventDetailsPageModule } from './pages/event-details.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
@@ -22,8 +22,15 @@ const routes: Routes = [
     loadChildren: () => HomePageModule,
   },
   {
-    path: 'user/:',
-    loadChildren: () => UserHomePageModule,
+    path: 'my-events',
+    loadChildren: () => UserEventsPageModule,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+
+  {
+    path: 'my-events/:eventId',
+    loadChildren: () => EventDetailsPageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
@@ -36,16 +43,18 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => RegisterPageModule,
   },
-  {
-    path: 'completeProfile',
-    loadChildren: () => UserDetailsPageModule,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
-  },
-  {
-    path: 'events',
-    loadChildren: () => UserEventsPageModule,
-  },
+  // {
+  //   path: 'completeProfile',
+  //   loadChildren: () => UserDetailsPageModule,
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
+  // },
+  // {
+  //   path: 'events',
+  //   loadChildren: () => UserEventsPageModule,
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
+  // },
   // {
   //   path: '404',
   //   loadChildren: () => NotFoundPageModule,
