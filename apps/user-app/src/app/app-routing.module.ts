@@ -10,6 +10,7 @@ import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { RegisterPageModule } from './pages/register.page-module';
 import { UserEventsPageModule } from './pages/user-events.page-module';
+import { EventDetailsPageModule } from './pages/event-details.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
@@ -25,6 +26,12 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
+  {
+    path: 'events/:eventId',
+    loadChildren: () => EventDetailsPageModule,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
 
   {
     path: 'login',
@@ -35,14 +42,14 @@ const routes: Routes = [
     loadChildren: () => RegisterPageModule,
   },
 
-  {
-    path: '404',
-    loadChildren: () => NotFoundPageModule,
-  },
-  {
-    path: '**',
-    redirectTo: '404',
-  },
+  // {
+  //   path: '404',
+  //   loadChildren: () => NotFoundPageModule,
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: '404',
+  // },
 ];
 
 @NgModule({

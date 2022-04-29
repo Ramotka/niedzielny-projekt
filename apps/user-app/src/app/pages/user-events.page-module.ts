@@ -7,6 +7,7 @@ import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adap
 import { FirebaseParticipantServiceModule } from '@participant';
 import { FirebaseEventServiceModule } from '@event';
 import { InMemoryContextStorageModule } from '@core';
+import { EventDetailsPageModule } from './event-details.page-module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,6 @@ import { InMemoryContextStorageModule } from '@core';
       {
         path: '',
         component: UserEventsPage,
-        children: [],
       },
     ]),
     UserEventsListComponentModule,
