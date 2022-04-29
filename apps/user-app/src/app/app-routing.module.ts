@@ -9,7 +9,6 @@ import {
 import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { RegisterPageModule } from './pages/register.page-module';
-import { UserDetailsPageModule } from './pages/user-details.page-module';
 import { UserEventsPageModule } from './pages/user-events.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
