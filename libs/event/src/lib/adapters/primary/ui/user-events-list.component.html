@@ -1,1 +1,22 @@
-<p>{{ participants$ | async | json }}</p>
+<div class="d-flex justify-content-center flex-column align-items-center">
+  <button class="btn btn-danger mb-3" (click)="onLogOutButtonClicked()">
+    Log Out
+  </button>
+
+  <div *ngIf="participants$ | async as participants">
+    <select class="form-select w-50">
+      <option *ngFor="let participant of participants$ | async">
+        {{ participant.eventId }}
+      </option>
+    </select>
+
+    <div *ngFor="let participant of participants$ | async">
+      <button
+        class="btn btn-success"
+        (click)="onTakeButtonClicked({ eventId: participant.eventId })"
+      >
+        Take
+      </button>
+    </div>
+  </div>
+</div>
