@@ -38,8 +38,9 @@ export class UserComponent {
     @Inject(ADDS_CREDENTIALS_DTO)
     private _addsCredentialsDto: AddsCredentialsDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
-    private _currentUserStorage: CurrentUserDtoStoragePort,
+    private _currentUserDtoStorage: CurrentUserDtoStoragePort,
     private _router: Router,
+    private _auth: AngularFireAuth,
     @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort
   ) {}
 
@@ -49,13 +50,21 @@ export class UserComponent {
         email: login.get('email')?.value,
         password: login.get('password')?.value,
       })
-      .subscribe(() => {
-        this._getsOneUserDto
-          .getOne()
-          .pipe(take(1))
-          .subscribe((data) => {
-            this._router.navigate(['user/' + data?.uid + '/completeProfile']);
-          });
+      .subscribe((data) => {
+        // this._getsOneUserDto
+        //   .getOne()
+        //   .pipe(take(1))
+        //   .subscribe((data) => {
+        //     this._router.navigate(['/my-events']);
+        //   });
+
+        this._auth.user.pipe(take(1)).subscribe((data) =>
+          this._currentUserDtoStorage.next({
+            userEmail: data?.email ? data?.email : undefined,
+          })
+        );
+
+        this._router.navigate(['/my-events']);
       });
   }
 }

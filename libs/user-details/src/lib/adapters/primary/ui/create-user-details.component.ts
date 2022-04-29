@@ -70,6 +70,7 @@ export class CreateUserDetailsComponent {
         userEmail: data?.email ? data?.email : undefined,
       });
 
+      this._router.navigate(['user/' + data?.uid + '/events']);
       this.newUserDetails.reset();
     });
   }

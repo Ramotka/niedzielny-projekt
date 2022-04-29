@@ -1,3 +1,11 @@
-<h2>Test</h2>
+<div class="d-flex justify-content-center flex-column align-items-center">
+  <button class="btn btn-danger mb-3" (click)="onLogOutButtonClicked()">
+    Log Out
+  </button>
 
-<h3>{{ participants$ | async | json }}</h3>
+  <select class="form-select w-50">
+    <option *ngFor="let participant of participants$ | async">
+      {{ participant.eventId }}
+    </option>
+  </select>
+</div>
