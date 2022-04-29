@@ -66,7 +66,6 @@ export class CreateUserDetailsComponent {
       });
 
       this._currentUserDtoStorage.next({
-        userId: data?.uid ? data?.uid : undefined,
         userEmail: data?.email ? data?.email : undefined,
       });
 
