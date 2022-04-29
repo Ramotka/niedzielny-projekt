@@ -8,3 +8,4 @@ export * from './lib/adapters/primary/ui/search-event.component-module';
 export * from './lib/adapters/secondary/infrastructure/in-memory-search.storage-module';
 export * from './lib/adapters/primary/ui/edit-event.component-module';
 export * from './lib/adapters/primary/ui/confirm-delete-event-modal.component-module';
+export * from './lib/adapters/primary/ui/user-event-details.component-module';
