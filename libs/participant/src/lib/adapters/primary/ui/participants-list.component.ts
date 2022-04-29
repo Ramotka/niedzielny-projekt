@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, tap } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
 import {
@@ -54,6 +54,7 @@ export class ParticipantsListComponent {
         email: search.email,
       })
     )
+    // tap((test) => console.log(test))
   );
 
   readonly editingParticipantForm: FormGroup = new FormGroup({
