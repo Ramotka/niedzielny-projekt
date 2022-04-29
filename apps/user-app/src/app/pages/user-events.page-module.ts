@@ -5,6 +5,8 @@ import { UserEventsPage } from './user-events.page';
 import { UserEventsListComponentModule } from 'libs/event/src/lib/adapters/primary/ui/user-events-list.component-module';
 import { FirebaseUserDetailsServiceModule } from 'libs/user-details/src/lib/adapters/secondary/infrastructure/firebase-user-details.service-module';
 import { FirebaseParticipantServiceModule } from '@participant';
+import { FirebaseEventServiceModule } from '@event';
+import { InMemoryContextStorageModule } from '@core';
 
 @NgModule({
   imports: [
@@ -13,11 +15,14 @@ import { FirebaseParticipantServiceModule } from '@participant';
       {
         path: '',
         component: UserEventsPage,
+        children: [],
       },
     ]),
     UserEventsListComponentModule,
     FirebaseUserDetailsServiceModule,
     FirebaseParticipantServiceModule,
+    FirebaseEventServiceModule,
+    InMemoryContextStorageModule,
   ],
   declarations: [UserEventsPage],
   providers: [],
