@@ -5,6 +5,7 @@ import { EventFormPageModule } from './pages/event-form.page-module';
 import { DietPageModule } from './pages/diet.page-module';
 import { EventHomePageModule } from './pages/event-home.page-module';
 import { UsersPageModule } from './pages/users.page-module';
+import { UserFormPageModule } from './pages/user-form.page-module';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   { 
         path: 'users', 
         loadChildren: () => UsersPageModule
+      },
+  { 
+        path: 'user-form', 
+        loadChildren: () => UserFormPageModule
       }
 ];
 
