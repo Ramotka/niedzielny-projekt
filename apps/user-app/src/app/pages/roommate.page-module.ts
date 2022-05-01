@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RoommatePage } from './roommate.page';
-import { SelectRoommateComponentModule } from '@participant';
+import {
+  FirebaseParticipantServiceModule,
+  SelectRoommateComponentModule,
+} from '@participant';
 
 @NgModule({
   imports: [
@@ -13,6 +16,7 @@ import { SelectRoommateComponentModule } from '@participant';
         component: RoommatePage,
       },
     ]),
+    FirebaseParticipantServiceModule,
     SelectRoommateComponentModule,
   ],
   declarations: [RoommatePage],
