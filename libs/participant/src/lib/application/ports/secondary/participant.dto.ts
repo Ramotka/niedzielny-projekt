@@ -7,4 +7,5 @@ export interface ParticipantDTO {
   readonly dietId: string;
   readonly transportId: string;
   readonly attractionId: string;
+  readonly roomType: string;
 }
