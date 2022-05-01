@@ -8,6 +8,7 @@ import { SetupEventDetailsPageModule } from './setup-event-details.page-module';
 import { EventDetailsPageModule } from './event-details.page-module';
 import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
 import { RoomTypePageModule } from './room-type.page-module';
+import { RoommatePageModule } from './roommate.page-module';
 
 @NgModule({
   imports: [
@@ -32,6 +33,10 @@ import { RoomTypePageModule } from './room-type.page-module';
           {
             path: 'room-type',
             loadChildren: () => RoomTypePageModule,
+          },
+          {
+            path: 'roommate',
+            loadChildren: () => RoommatePageModule,
           },
         ],
       },
