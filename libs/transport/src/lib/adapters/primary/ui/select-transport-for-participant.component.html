@@ -2,9 +2,10 @@
   <form
     [formGroup]="selectedTransport"
     (change)="onSelectedTransportChanged(selectedTransport, participant.id)"
+    class="d-flex flex-column justify-content-center align-items-center"
   >
     <!-- <input type="text" formControlName="dietId" placeholder="Diet Id" /> -->
-    <div class="mb-3 w-75">
+    <div class="mb-4 w-100">
       <label for="transport" class="form-label fs-5">Transport</label>
       <select formControlName="transportId" id="transport" class="form-select">
         <option value="" disabled selected>Choose your transport option</option>

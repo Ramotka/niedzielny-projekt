@@ -2,9 +2,10 @@
   <form
     [formGroup]="selectedDiet"
     (change)="onSelectedDietChanged(selectedDiet, participant.id)"
+    class="d-flex flex-column justify-content-center align-items-center"
   >
     <!-- <input type="text" formControlName="dietId" placeholder="Diet Id" /> -->
-    <div class="mb-3 w-75">
+    <div class="mb-4 w-100">
       <label for="diet" class="form-label fs-5">Diet</label>
       <select formControlName="dietId" id="diet" class="form-select">
         <option value="" disabled selected>Choose your diet</option>
