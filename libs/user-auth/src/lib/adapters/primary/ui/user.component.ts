@@ -51,12 +51,6 @@ export class UserComponent {
         password: login.get('password')?.value,
       })
       .subscribe((data) => {
-        this._auth.user.pipe(take(1)).subscribe((data) =>
-          this._currentUserDtoStorage.next({
-            userEmail: data?.email ? data?.email : undefined,
-          })
-        );
-
         this._router.navigate(['/my-events']);
       });
   }
