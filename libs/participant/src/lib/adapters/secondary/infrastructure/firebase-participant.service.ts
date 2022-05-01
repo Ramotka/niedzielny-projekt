@@ -23,6 +23,7 @@ const mapToOneObject = (par: ParticipantDTO[]) => {
     transportId: par[0].transportId,
     attractionId: par[0].attractionId,
     roomType: par[0].roomType,
+    roommateId: par[0].roommateId,
   };
 };
 
@@ -53,6 +54,14 @@ export class FirebaseParticipantService
                 participant.email
                   .toLowerCase()
                   .includes(criterion?.email?.toLowerCase() as string)
+              )
+            : data
+        ),
+        map((data: ParticipantDTO[]) =>
+          criterion && criterion.eventId
+            ? data.filter(
+                (participant) =>
+                  participant.eventId === (criterion.eventId as string)
               )
             : data
         )
