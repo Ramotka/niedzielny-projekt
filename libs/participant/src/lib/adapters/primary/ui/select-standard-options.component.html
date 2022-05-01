@@ -1,0 +1,25 @@
+<form
+  [formGroup]="standardOptions"
+  class="d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="mb-3 w-75">
+    <label for="diet" class="form-label">Diet</label>
+    <select id="diet" class="form-select" formControlName="diet">
+      <option value="" disabled selected>Choose your diet</option>
+    </select>
+  </div>
+  <div class="mb-3 w-75">
+    <label for="transport" class="form-label">Transport</label>
+    <select id="transport" class="form-select" formControlName="transport">
+      <option value="" disabled selected>Choose your transport option</option>
+    </select>
+  </div>
+  <div class="mb-3 w-75">
+    <label for="attraction" class="form-label">Attraction</label>
+    <select id="attraction" class="form-select" formControlName="attraction">
+      <option value="" disabled selected>Choose your attraction</option>
+    </select>
+  </div>
+
+  <input class="w-75 btn btn-primary" type="submit" value="Next" />
+</form>
