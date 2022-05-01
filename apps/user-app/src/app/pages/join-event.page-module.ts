@@ -6,6 +6,7 @@ import { FirebaseEventServiceModule } from '@event';
 import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id.resolver';
 import { SetupEventDetailsPageModule } from './setup-event-details.page-module';
 import { EventDetailsPageModule } from './event-details.page-module';
+import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { EventDetailsPageModule } from './event-details.page-module';
         component: JoinEventPage,
         resolve: {
           eventId: EventIdResolver,
+          userEmail: UserEmailResolver,
         },
         children: [
           {
