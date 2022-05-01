@@ -3,7 +3,7 @@
   *ngIf="event$ | async as event"
 >
   <h3>{{ event.title }}</h3>
-  <img class="w-75" [src]="event.imageUrl" alt="" />
+  <img class="w-50" [src]="event.imageUrl" alt="" />
   <p class="fs-5">
     <span>{{ event.fromDate | date: "dd-MM-yyyy" }}</span> -
     <span>{{ event.toDate | date: "dd-MM-yyyy" }}</span>
