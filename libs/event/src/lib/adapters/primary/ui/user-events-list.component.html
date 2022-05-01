@@ -5,8 +5,9 @@
     (ngSubmit)="onConfirmEventSubmitted(selectedEvent)"
   >
     <select class="form-select text-center" formControlName="eventId">
-      <option *ngFor="let participant of participants$ | async">
-        {{ participant.eventId }}
+      <option value="" disabled selected>Choose your event</option>
+      <option [value]="event.id" *ngFor="let event of events$ | async">
+        {{ event.title }}
       </option>
     </select>
 
