@@ -15,6 +15,7 @@ import { SelectAttractionForParticipantComponentModule } from 'libs/attractions/
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forChild([
       {
         path: '',

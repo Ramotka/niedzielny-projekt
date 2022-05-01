@@ -7,6 +7,7 @@ import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id
 import { SetupEventDetailsPageModule } from './setup-event-details.page-module';
 import { EventDetailsPageModule } from './event-details.page-module';
 import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
+import { RoomTypePageModule } from './room-type.page-module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,10 @@ import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/us
           {
             path: 'setup',
             loadChildren: () => SetupEventDetailsPageModule,
+          },
+          {
+            path: 'room-type',
+            loadChildren: () => RoomTypePageModule,
           },
         ],
       },

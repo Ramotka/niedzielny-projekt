@@ -1,0 +1,16 @@
+<div *ngIf="participant$ | async as participant">
+  <form
+    [formGroup]="selectedRoomType"
+    (change)="onSelectedRoomTypeChanged(selectedRoomType, participant.id)"
+    class="d-flex flex-column justify-content-center align-items-center"
+  >
+    <div class="mb-4 w-100">
+      <label for="room-type" class="form-label fs-5">Select room type</label>
+      <select formControlName="roomType" id="room-type" class="form-select">
+        <option value="" disabled selected>Room type</option>
+        <option value="single">Single room</option>
+        <option value="double">Double room</option>
+      </select>
+    </div>
+  </form>
+</div>
