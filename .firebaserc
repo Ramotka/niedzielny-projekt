@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "sundaybootcamp-67f93"
+  },
+  "targets": {
+    "sundaybootcamp-67f93": {
+      "hosting": {
+        "user-app": [
+          "sundaybootcamp-67f93"
+        ]
+      }
+    }
+  }
+}
