@@ -18,6 +18,10 @@ import {
   GETS_ALL_PARTICIPANT_DTO,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import {
+  GetsAllSearchDtoPort,
+  GETS_ALL_SEARCH_DTO,
+} from '../../../application/ports/secondary/gets-all-search.dto-port';
+import {
   RemovesParticipantDtoPort,
   REMOVES_PARTICIPANT_DTO,
 } from '../../../application/ports/secondary/removes-participant.dto-port';
@@ -49,12 +53,11 @@ export class ParticipantsListComponent {
     this._searchDtoStorage.asObservable(),
   ]).pipe(
     switchMap(([context, search]) =>
-      this._getsAllParticipantDto.getAll({
+      this._getsAllSearchDto.getAllSearch({
         eventId: context.eventId,
         email: search.email,
       })
     )
-    // tap((test) => console.log(test))
   );
 
   readonly editingParticipantForm: FormGroup = new FormGroup({
@@ -66,6 +69,8 @@ export class ParticipantsListComponent {
   constructor(
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
+    @Inject(GETS_ALL_SEARCH_DTO)
+    private _getsAllSearchDto: GetsAllSearchDtoPort,
     @Inject(REMOVES_PARTICIPANT_DTO)
     private _removesParticipantDto: RemovesParticipantDtoPort,
     @Inject(SETS_PARTICIPANT_DTO)
