@@ -28,7 +28,7 @@ import {
   ContextDtoStoragePort,
   CONTEXT_DTO_STORAGE,
 } from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-user-events-list',
@@ -44,8 +44,20 @@ export class UserEventsListComponent {
         this._getsAllParticipantDto.getAll({ email: data.userEmail })
       )
     );
+
+  events$: Observable<EventDTO[]> = combineLatest([
+    this.participants$,
+    this._getsAllEventDto.getAll(),
+  ]).pipe(
+    map(([participants, events]) =>
+      events.filter((event) =>
+        participants.some((participant) => event.id === participant.eventId)
+      )
+    )
+  );
+
   readonly selectedEvent: FormGroup = new FormGroup({
-    eventId: new FormControl(),
+    eventId: new FormControl('', Validators.required),
   });
 
   onConfirmEventSubmitted(selectedEvent: FormGroup): void {
@@ -62,8 +74,6 @@ export class UserEventsListComponent {
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStorage: CurrentUserDtoStoragePort,
     @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
-    @Inject(CONTEXT_DTO_STORAGE)
-    private _contextDtoStoragePort: ContextDtoStoragePort,
     private _auth: AngularFireAuth,
     private _router: Router
   ) {}
