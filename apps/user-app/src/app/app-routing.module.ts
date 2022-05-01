@@ -15,7 +15,6 @@ import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id
 import { JoinEventPageModule } from './pages/join-event.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
 
 const routes: Routes = [
   {
