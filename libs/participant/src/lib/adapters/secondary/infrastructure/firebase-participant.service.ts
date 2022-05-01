@@ -9,6 +9,8 @@ import { filterByCriterion } from '@lowgular/shared';
 import { RemovesParticipantDtoPort } from '../../../application/ports/secondary/removes-participant.dto-port';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
 import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
+import { GetsAllSearchDtoPort } from '../../../application/ports/secondary/gets-all-search.dto-port';
+import { SearchDTO } from '../../../application/ports/secondary/search.dto';
 
 const mapToOneObject = (par: ParticipantDTO[]) => {
   return {
@@ -30,7 +32,8 @@ export class FirebaseParticipantService
     GetsAllParticipantDtoPort,
     RemovesParticipantDtoPort,
     SetsParticipantDtoPort,
-    GetsOneParticipantDtoPort
+    GetsOneParticipantDtoPort,
+    GetsAllSearchDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -71,6 +74,18 @@ export class FirebaseParticipantService
         )
       ),
       map((data) => mapToOneObject(data))
+    );
+  }
+
+  getAllSearch(
+    criterion: Partial<ParticipantDTO>
+  ): Observable<ParticipantDTO[]> {
+    return this.getAll(criterion).pipe(
+      map((data: ParticipantDTO[]) =>
+        data.filter(
+          (participant) => participant.eventId === (criterion.eventId as string)
+        )
+      )
     );
   }
 }

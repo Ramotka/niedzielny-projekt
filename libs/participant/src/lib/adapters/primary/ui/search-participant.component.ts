@@ -19,8 +19,6 @@ import {
 })
 export class SearchParticipantComponent {
   readonly searchedParticipant: FormGroup = new FormGroup({
-    // name: new FormControl(),
-    // lastName: new FormControl(),
     email: new FormControl(),
   });
 
