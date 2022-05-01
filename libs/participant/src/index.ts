@@ -4,3 +4,4 @@ export * from './lib/adapters/secondary/infrastructure/firebase-participant.serv
 export * from './lib/adapters/secondary/infrastructure/in-memory-input-state.storage-module';
 export * from './lib/adapters/secondary/infrastructure/in-memory-search.storage-module';
 export * from './lib/adapters/primary/ui/search-participant.component-module';
+export * from './lib/adapters/primary/ui/select-room-type.component-module';
