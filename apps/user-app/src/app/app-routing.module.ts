@@ -13,9 +13,9 @@ import { UserEventsPageModule } from './pages/user-events.page-module';
 import { EventDetailsPageModule } from './pages/event-details.page-module';
 import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id.resolver';
 import { JoinEventPageModule } from './pages/join-event.page-module';
+import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
 
 const routes: Routes = [
   {
@@ -27,6 +27,9 @@ const routes: Routes = [
     loadChildren: () => UserEventsPageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+    resolve: {
+      userEmail: UserEmailResolver,
+    },
   },
   {
     path: 'events/:eventId',
@@ -35,6 +38,7 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     resolve: {
       eventId: EventIdResolver,
+      userEmail: UserEmailResolver,
     },
   },
 
