@@ -11,9 +11,13 @@
       </option>
     </select>
 
-    <input class="btn btn-primary mt-3 text-white" type="submit" value="Next" />
+    <input
+      class="w-100 btn btn-primary mt-3 text-white"
+      type="submit"
+      value="Next"
+    />
+    <button class="w-100 btn btn-danger mt-3" (click)="onLogOutButtonClicked()">
+      Log Out
+    </button>
   </form>
-  <button class="btn btn-danger mt-3" (click)="onLogOutButtonClicked()">
-    Log Out
-  </button>
 </div>
