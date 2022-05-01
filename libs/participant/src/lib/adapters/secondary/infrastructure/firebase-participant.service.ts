@@ -3,11 +3,25 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesParticipantDtoPort } from '../../../application/ports/secondary/removes-participant.dto-port';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
+import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
+
+const mapToOneObject = (par: ParticipantDTO[]) => {
+  return {
+    id: par[0].id,
+    name: par[0].name,
+    lastName: par[0].lastName,
+    email: par[0].email,
+    eventId: par[0].eventId,
+    dietId: par[0].dietId,
+    transportId: par[0].transportId,
+    attractionId: par[0].attractionId,
+  };
+};
 
 @Injectable()
 export class FirebaseParticipantService
@@ -15,7 +29,8 @@ export class FirebaseParticipantService
     AddsParticipantDtoPort,
     GetsAllParticipantDtoPort,
     RemovesParticipantDtoPort,
-    SetsParticipantDtoPort
+    SetsParticipantDtoPort,
+    GetsOneParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -46,5 +61,16 @@ export class FirebaseParticipantService
 
   set(participant: Partial<ParticipantDTO>): void {
     this._client.doc('participants/' + participant.id).update(participant);
+  }
+
+  getOne(criterion: Partial<ParticipantDTO>): Observable<ParticipantDTO> {
+    return this.getAll(criterion).pipe(
+      map((data: ParticipantDTO[]) =>
+        data.filter(
+          (participant) => participant.eventId === (criterion.eventId as string)
+        )
+      ),
+      map((data) => mapToOneObject(data))
+    );
   }
 }

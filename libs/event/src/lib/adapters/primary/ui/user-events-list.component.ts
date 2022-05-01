@@ -28,6 +28,7 @@ import {
   ContextDtoStoragePort,
   CONTEXT_DTO_STORAGE,
 } from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-user-events-list',
@@ -43,33 +44,15 @@ export class UserEventsListComponent {
         this._getsAllParticipantDto.getAll({ email: data.userEmail })
       )
     );
+  readonly selectedEvent: FormGroup = new FormGroup({
+    eventId: new FormControl(),
+  });
 
-  // userEvents$: Observable<EventDTO[]> = 
-  // userEvents$: Observable<EventDTO[]> = this._currentUserDtoStorage
-  //   .asObservable()
-  //   .pipe(
-  //     switchMap((data) =>
-  //       this._getsAllParticipantDto
-  //         .getAll({ email: data.userEmail })
-  //         .pipe(
-  //           switchMap((data) =>
-  //             this._getsAllEventDto.getAll({
-  //               id: data.forEach((item) => item.eventId),
-  //             })
-  //           )
-  //         )
-  //     )
-  //   );
-
-  onTakeButtonClicked(participant: Partial<ParticipantDTO>): void {
-    // this._getsAllEventDto.getAll({ id: participant.eventId });
-    this._contextDtoStoragePort.next({ eventId: participant.eventId });
-
-    this._router.navigate(['my-events/' + participant.eventId]);
+  onConfirmEventSubmitted(selectedEvent: FormGroup): void {
+    this._router.navigate(['/events/' + selectedEvent.get('eventId')?.value]);
   }
 
   onLogOutButtonClicked(): void {
-    // this._userSignOutDto.userSingOut();
     this._auth.signOut().then(() => this._router.navigate(['']));
   }
 
