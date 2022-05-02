@@ -4,9 +4,8 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { combineLatest, Observable, tap } from 'rxjs';
+import { combineLatest, Observable, map, switchMap, tap } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
 import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
@@ -17,10 +16,6 @@ import {
   GetsAllParticipantDtoPort,
   GETS_ALL_PARTICIPANT_DTO,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
-import {
-  GetsAllSearchDtoPort,
-  GETS_ALL_SEARCH_DTO,
-} from '../../../application/ports/secondary/gets-all-search.dto-port';
 import {
   RemovesParticipantDtoPort,
   REMOVES_PARTICIPANT_DTO,
@@ -53,7 +48,7 @@ export class ParticipantsListComponent {
     this._searchDtoStorage.asObservable(),
   ]).pipe(
     switchMap(([context, search]) =>
-      this._getsAllSearchDto.getAllSearch({
+      this._getsAllParticipantDto.getAll({
         eventId: context.eventId,
         email: search.email,
       })
@@ -69,8 +64,8 @@ export class ParticipantsListComponent {
   constructor(
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
-    @Inject(GETS_ALL_SEARCH_DTO)
-    private _getsAllSearchDto: GetsAllSearchDtoPort,
+    // @Inject(GETS_ALL_SEARCH_DTO)
+    // private _getsAllSearchDto: GetsAllSearchDtoPort,
     @Inject(REMOVES_PARTICIPANT_DTO)
     private _removesParticipantDto: RemovesParticipantDtoPort,
     @Inject(SETS_PARTICIPANT_DTO)
