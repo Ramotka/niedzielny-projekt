@@ -2,6 +2,7 @@
   <form
     [formGroup]="selectedRoomType"
     (change)="onSelectedRoomTypeChanged(selectedRoomType, participant.id)"
+    (ngSubmit)="onRoomTypeSubmitted(participant)"
     class="d-flex flex-column justify-content-center align-items-center"
   >
     <div class="mb-4 w-100">
@@ -11,6 +12,8 @@
         <option value="single">Single room</option>
         <option value="double">Double room</option>
       </select>
+
+      <input class="mt-4 btn btn-primary w-100" type="submit" value="Next" />
     </div>
   </form>
 </div>

@@ -9,6 +9,7 @@ import { EventDetailsPageModule } from './event-details.page-module';
 import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
 import { RoomTypePageModule } from './room-type.page-module';
 import { RoommatePageModule } from './roommate.page-module';
+import { ThankYouPageModule } from './thank-you.page-module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,10 @@ import { RoommatePageModule } from './roommate.page-module';
           {
             path: 'roommate',
             loadChildren: () => RoommatePageModule,
+          },
+          {
+            path: 'thank-you',
+            loadChildren: () => ThankYouPageModule,
           },
         ],
       },

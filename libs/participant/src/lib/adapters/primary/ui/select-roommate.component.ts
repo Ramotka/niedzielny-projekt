@@ -28,6 +28,7 @@ import {
   GETS_ALL_PARTICIPANT_DTO,
   GetsAllParticipantDtoPort,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-select-roommate',
@@ -49,7 +50,7 @@ export class SelectRoommateComponent {
   );
 
   allParticipants$: Observable<ParticipantDTO[]> = combineLatest([
-    this._currentUserDtoStoragePort.asObservable(),
+    this.participant$,
     this._contextDtoStoragePort
       .asObservable()
       .pipe(
@@ -59,7 +60,7 @@ export class SelectRoommateComponent {
       ),
   ]).pipe(
     map(([currentUser, participants]) =>
-      participants.filter((item) => item.email !== currentUser.userEmail)
+      participants.filter((item) => item.id !== currentUser.id)
     )
   );
 
@@ -77,16 +78,19 @@ export class SelectRoommateComponent {
     @Inject(SETS_PARTICIPANT_DTO)
     private _setsParticipantDto: SetsParticipantDtoPort,
     @Inject(GETS_ALL_PARTICIPANT_DTO)
-    private _getsAllParticipantDto: GetsAllParticipantDtoPort
+    private _getsAllParticipantDto: GetsAllParticipantDtoPort,
+    private _router: Router
   ) {}
 
-  onSelectedRoommateChanged(
+  onSelectedRoommateSubmitted(
     selectedRoommate: FormGroup,
     participantId: string
   ): void {
+    const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
     this._setsParticipantDto.set({
       id: participantId,
       roommateId: selectedRoommate.get('roommateId')?.value,
     });
+    this._router.navigate([baseUrl + '/thank-you']);
   }
 }
