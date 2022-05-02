@@ -49,7 +49,7 @@ export class SelectRoommateComponent {
   );
 
   allParticipants$: Observable<ParticipantDTO[]> = combineLatest([
-    this._currentUserDtoStoragePort.asObservable(),
+    this.participant$,
     this._contextDtoStoragePort
       .asObservable()
       .pipe(
@@ -59,7 +59,7 @@ export class SelectRoommateComponent {
       ),
   ]).pipe(
     map(([currentUser, participants]) =>
-      participants.filter((item) => item.email !== currentUser.userEmail)
+      participants.filter((item) => item.id !== currentUser.id)
     )
   );
 
@@ -80,7 +80,7 @@ export class SelectRoommateComponent {
     private _getsAllParticipantDto: GetsAllParticipantDtoPort
   ) {}
 
-  onSelectedRoommateChanged(
+  onSelectedRoommateSubmitted(
     selectedRoommate: FormGroup,
     participantId: string
   ): void {
