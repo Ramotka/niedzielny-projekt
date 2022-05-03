@@ -29,14 +29,14 @@ const mapToOneObject = (par: ParticipantDTO[]) => {
 };
 
 @Injectable()
+// GetsAllSearchDtoPort
 export class FirebaseParticipantService
   implements
     AddsParticipantDtoPort,
     GetsAllParticipantDtoPort,
     RemovesParticipantDtoPort,
     SetsParticipantDtoPort,
-    GetsOneParticipantDtoPort,
-    GetsAllSearchDtoPort
+    GetsOneParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -88,15 +88,15 @@ export class FirebaseParticipantService
     );
   }
 
-  getAllSearch(
-    criterion: Partial<ParticipantDTO>
-  ): Observable<ParticipantDTO[]> {
-    return this.getAll(criterion).pipe(
-      map((data: ParticipantDTO[]) =>
-        data.filter(
-          (participant) => participant.eventId === (criterion.eventId as string)
-        )
-      )
-    );
-  }
+  // getAllSearch(
+  //   criterion: Partial<ParticipantDTO>
+  // ): Observable<ParticipantDTO[]> {
+  //   return this.getAll(criterion).pipe(
+  //     map((data: ParticipantDTO[]) =>
+  //       data.filter(
+  //         (participant) => participant.eventId === (criterion.eventId as string)
+  //       )
+  //     )
+  //   );
+  // }
 }
