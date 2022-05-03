@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { RoommatePage } from './roommate.page';
 import {
   FirebaseParticipantServiceModule,
+  RoommateInvitationsComponentModule,
   SelectRoommateComponentModule,
 } from '@participant';
 
@@ -18,6 +19,7 @@ import {
     ]),
     FirebaseParticipantServiceModule,
     SelectRoommateComponentModule,
+    RoommateInvitationsComponentModule,
   ],
   declarations: [RoommatePage],
   providers: [],
