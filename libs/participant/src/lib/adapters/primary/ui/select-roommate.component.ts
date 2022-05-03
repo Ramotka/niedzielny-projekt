@@ -29,6 +29,7 @@ import {
   GetsAllParticipantDtoPort,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'lib-select-roommate',
@@ -79,7 +80,8 @@ export class SelectRoommateComponent {
     private _setsParticipantDto: SetsParticipantDtoPort,
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
-    private _router: Router
+    private _router: Router,
+    private _auth: AngularFireAuth
   ) {}
 
   onSelectedRoommateSubmitted(
@@ -91,6 +93,8 @@ export class SelectRoommateComponent {
       id: participantId,
       roommateId: selectedRoommate.get('roommateId')?.value,
     });
-    this._router.navigate([baseUrl + '/thank-you']);
+    this._auth
+      .signOut()
+      .then(() => this._router.navigate([baseUrl + '/thank-you']));
   }
 }

@@ -27,7 +27,8 @@ import {
   GETS_ALL_PARTICIPANT_DTO,
   GetsAllParticipantDtoPort,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'lib-roommate-invitations',
@@ -78,7 +79,8 @@ export class RoommateInvitationsComponent {
     private _setsParticipantDto: SetsParticipantDtoPort,
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
-    private _router: Router
+    private _router: Router,
+    private _auth: AngularFireAuth
   ) {}
 
   onAcceptButtonClicked(invitationId: string, participantId: string): void {
@@ -87,7 +89,9 @@ export class RoommateInvitationsComponent {
       id: participantId,
       roommateId: invitationId,
     });
-    this._router.navigate([baseUrl + '/thank-you']);
+    this._auth
+      .signOut()
+      .then(() => this._router.navigate([baseUrl + '/thank-you']));
   }
 
   onCancelButtonClicked(invitationId: string): void {
