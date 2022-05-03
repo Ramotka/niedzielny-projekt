@@ -14,6 +14,8 @@ import { EventDetailsPageModule } from './pages/event-details.page-module';
 import { EventIdResolver } from 'libs/event/src/lib/adapters/primary/ui/event-id.resolver';
 import { JoinEventPageModule } from './pages/join-event.page-module';
 import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
+import { MyEventCheckGuard } from './pages/my-event-check.guard';
+import { AccessDeniedPageModule } from './pages/access-denied.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -34,7 +36,7 @@ const routes: Routes = [
   {
     path: 'events/:eventId',
     loadChildren: () => JoinEventPageModule,
-    canActivate: [AngularFireAuthGuard],
+    canActivate: [AngularFireAuthGuard, MyEventCheckGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     resolve: {
       eventId: EventIdResolver,
@@ -50,15 +52,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => RegisterPageModule,
   },
-
-  // {
-  //   path: '404',
-  //   loadChildren: () => NotFoundPageModule,
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: '404',
-  // },
+  { 
+        path: 'access-denied', 
+        loadChildren: () => AccessDeniedPageModule
+      }
 ];
 
 @NgModule({
