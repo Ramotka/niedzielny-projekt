@@ -30,6 +30,7 @@ import {
   CurrentUserDtoStoragePort,
   CURRENT_USER_DTO_STORAGE,
 } from 'libs/core/src/lib/application/ports/secondary/current-user-dto.storage-port';
+import { CancelAttendInEventModalComponent } from './cancel-attend-in-event-modal.component';
 
 @Component({
   selector: 'lib-user-event-details',
@@ -80,10 +81,11 @@ export class UserEventDetailsComponent {
   }
 
   onCancelButtonClicked(participantId: string): void {
-    this._setsParticipantDto.set({
-      id: participantId,
-      status: false,
-    });
-    this._router.navigate(['my-events']);
+    this.modalRef = this.modalService.show(CancelAttendInEventModalComponent);
+    //   this._setsParticipantDto.set({
+    //     id: participantId,
+    //     status: false,
+    //   });
+    //   this._router.navigate(['my-events']);
   }
 }
