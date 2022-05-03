@@ -80,12 +80,7 @@ export class UserEventDetailsComponent {
     this._router.navigate([baseUrl + '/setup']);
   }
 
-  onCancelButtonClicked(participantId: string): void {
+  onCancelButtonClicked(): void {
     this.modalRef = this.modalService.show(CancelAttendInEventModalComponent);
-    //   this._setsParticipantDto.set({
-    //     id: participantId,
-    //     status: false,
-    //   });
-    //   this._router.navigate(['my-events']);
   }
 }
