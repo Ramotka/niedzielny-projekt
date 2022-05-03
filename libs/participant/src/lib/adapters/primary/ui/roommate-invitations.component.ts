@@ -82,10 +82,12 @@ export class RoommateInvitationsComponent {
   ) {}
 
   onAcceptButtonClicked(invitationId: string, participantId: string): void {
+    const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
     this._setsParticipantDto.set({
       id: participantId,
       roommateId: invitationId,
     });
+    this._router.navigate([baseUrl + '/thank-you']);
   }
 
   onCancelButtonClicked(invitationId: string): void {

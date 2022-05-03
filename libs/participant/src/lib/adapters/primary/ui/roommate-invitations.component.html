@@ -6,7 +6,7 @@
 
   <ul class="w-50 p-0" *ngIf="participant$ | async as participant">
     <li
-      class="d-flex justify-content-between align-items-center"
+      class="my-2 d-flex justify-content-between align-items-center"
       *ngFor="let item of invitations$ | async"
     >
       <p class="m-0">{{ item.name }} {{ item.lastName }}</p>
