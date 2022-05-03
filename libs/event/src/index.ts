@@ -9,3 +9,4 @@ export * from './lib/adapters/secondary/infrastructure/in-memory-search.storage-
 export * from './lib/adapters/primary/ui/edit-event.component-module';
 export * from './lib/adapters/primary/ui/confirm-delete-event-modal.component-module';
 export * from './lib/adapters/primary/ui/user-event-details.component-module';
+export * from './lib/adapters/primary/ui/cancel-attend-in-event-modal.component-module';

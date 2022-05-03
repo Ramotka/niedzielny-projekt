@@ -24,6 +24,7 @@ const mapToOneObject = (par: ParticipantDTO[]) => {
     attractionId: par[0].attractionId,
     roomType: par[0].roomType,
     roommateId: par[0].roommateId,
+    status: par[0].status,
   };
 };
 

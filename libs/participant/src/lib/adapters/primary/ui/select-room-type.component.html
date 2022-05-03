@@ -13,7 +13,12 @@
         <option value="double">Double room</option>
       </select>
 
-      <input class="mt-4 btn btn-primary w-100" type="submit" value="Next" />
+      <input
+        class="mt-4 btn btn-primary w-100"
+        type="submit"
+        value="Next"
+        [disabled]="selectedRoomType.invalid"
+      />
     </div>
   </form>
 </div>

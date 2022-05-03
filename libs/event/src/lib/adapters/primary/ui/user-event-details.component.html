@@ -1,19 +1,27 @@
-<div
-  class="d-flex align-items-center justify-content-center flex-column shadow-sm p-3 bg-body rounded"
-  *ngIf="event$ | async as event"
->
-  <h3>{{ event.title }}</h3>
-  <img class="w-50" [src]="event.imageUrl" alt="" />
-  <p class="fs-5">
-    <span>{{ event.fromDate | date: "dd-MM-yyyy" }}</span> -
-    <span>{{ event.toDate | date: "dd-MM-yyyy" }}</span>
-  </p>
-  <p class="mx-4">{{ event.description }}</p>
-
-  <a class="btn btn-primary mt-3 w-50" routerLink="setup"
-    >I confirm my attendance</a
+<div *ngIf="participant$ | async as participant">
+  <div
+    class="d-flex align-items-center justify-content-center flex-column shadow-sm p-3 bg-body rounded"
+    *ngIf="event$ | async as event"
   >
-  <button type="button" class="btn btn-outline-danger mt-3 w-50">
-    I can't attend
-  </button>
+    <h3>{{ event.title }}</h3>
+    <img class="w-50" [src]="event.imageUrl" alt="" />
+    <p class="fs-5">
+      <span>{{ event.fromDate | date: "dd-MM-yyyy" }}</span> -
+      <span>{{ event.toDate | date: "dd-MM-yyyy" }}</span>
+    </p>
+    <p class="mx-4">{{ event.description }}</p>
+
+    <a
+      class="btn btn-primary mt-3 w-50"
+      (click)="onConfirmButtonClicked(participant.id)"
+      >I confirm my attendance</a
+    >
+    <button
+      type="button"
+      class="btn btn-outline-danger mt-3 w-50"
+      (click)="onCancelButtonClicked()"
+    >
+      I can't attend
+    </button>
+  </div>
 </div>
