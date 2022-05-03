@@ -1,0 +1,26 @@
+<div
+  class="p-5 bg-white d-flex justify-content-center align-items-center flex-column py-4 mt-3 fw-bold"
+  *ngIf="participant$ | async as participant"
+>
+  <h2 class="m-5 text-center fs-4">Are you sure you don’t want to attend?</h2>
+
+  <div class="my-3 w-50">
+    <button
+      type="button"
+      class="btn btn-danger w-100"
+      (click)="onConfirmButtonClicked(participant.id)"
+    >
+      Yes, I am sure
+    </button>
+  </div>
+
+  <div class="mb-5=w-50">
+    <button
+      type="button"
+      class="btn bg-gray-400 w-100"
+      (click)="onCancelButtonClicked()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
