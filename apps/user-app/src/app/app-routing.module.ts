@@ -52,10 +52,18 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => RegisterPageModule,
   },
-  { 
-        path: 'access-denied', 
-        loadChildren: () => AccessDeniedPageModule
-      }
+  {
+    path: 'access-denied',
+    loadChildren: () => AccessDeniedPageModule,
+  },
+  {
+    path: '404',
+    loadChildren: () => NotFoundPageModule,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
+  },
 ];
 
 @NgModule({
