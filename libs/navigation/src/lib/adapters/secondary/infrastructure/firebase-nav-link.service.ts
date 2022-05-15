@@ -40,6 +40,11 @@ export class FirebaseNavLinkService implements GetsAllNavLinkDtoPort {
         link: 'user-management',
         icon: 'assets/icons/nav-links/users.svg',
       },
+      {
+        name: 'Room',
+        link: 'room',
+        icon: 'assets/icons/nav-links/room.svg',
+      },
     ]);
   }
 }

@@ -13,6 +13,7 @@ import { TransportPageModule } from './transport.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
 import { UserManagementPageModule } from './user-management.page-module';
+import { CreateRoomPageModule } from './create-room.page-module';
 
 @NgModule({
   imports: [
@@ -52,6 +53,10 @@ import { UserManagementPageModule } from './user-management.page-module';
           {
             path: 'user-management',
             loadChildren: () => UserManagementPageModule,
+          },
+          {
+            path: 'room',
+            loadChildren: () => CreateRoomPageModule,
           },
         ],
       },
