@@ -332,7 +332,7 @@
     "room": {
       "projectType": "library",
       "root": "libs/room",
-      "sourceRoot": "projects/room/src",
+      "sourceRoot": "libs/room/src",
       "prefix": "lib",
       "architect": {
         "build": {
