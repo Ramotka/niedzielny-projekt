@@ -2,19 +2,28 @@
   [formGroup]="createRoom"
   *ngIf="currentEvent$ | async as event"
   (ngSubmit)="onCreateRoomSubmited(createRoom, event.eventId)"
-  class="d-flex"
+  class="pb-5 d-flex flex-column align-items-end w-25 mt-4"
 >
+  <p class="fs-6 my-2 align-self-start">Add Room</p>
+  <div class="d-flex">
+    <input
+      class="ps-2 mb-3 me-3 w-100"
+      type="number"
+      formControlName="roomNr"
+      placeholder="Room Nr"
+    />
+    <input
+      class="ps-2 mb-3 w-100"
+      formControlName="capacity"
+      type="number"
+      placeholder="Capacity"
+    />
+  </div>
+
   <input
-    class="form-control w-25"
-    type="number"
-    formControlName="roomNr"
-    placeholder="Room Nr"
+    class="bg-success btn w-50 text-white"
+    type="submit"
+    value="Save changes"
+    [disabled]="createRoom.invalid"
   />
-  <input
-    class="form-control w-25"
-    formControlName="capacity"
-    type="number"
-    placeholder="Capacity"
-  />
-  <input type="submit" value="Submit" />
 </form>
