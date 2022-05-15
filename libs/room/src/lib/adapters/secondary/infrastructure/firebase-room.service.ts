@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetsAllRoomDtoPort } from '../../../application/ports/secondary/gets-all-room.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
+import { SetsRoomDtoPort } from '../../../application/ports/secondary/sets-room.dto-port';
 
 @Injectable()
 export class FirebaseRoomService
-  implements AddsRoomDtoPort, GetsAllRoomDtoPort
+  implements AddsRoomDtoPort, GetsAllRoomDtoPort, SetsRoomDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -22,5 +23,9 @@ export class FirebaseRoomService
       .collection<RoomDTO>('rooms')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: RoomDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  set(room: Partial<RoomDTO>): void {
+    this._client.doc('rooms/' + room.id).update(room);
   }
 }
