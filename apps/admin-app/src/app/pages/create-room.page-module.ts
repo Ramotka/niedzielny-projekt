@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CreateRoomPage } from './create-room.page';
+import { CreateRoomFormComponentModule } from 'libs/room/src/lib/adapters/primary/ui/create-room-form.component-module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { CreateRoomPage } from './create-room.page';
         component: CreateRoomPage,
       },
     ]),
+    CreateRoomFormComponentModule,
   ],
   declarations: [CreateRoomPage],
   providers: [],
