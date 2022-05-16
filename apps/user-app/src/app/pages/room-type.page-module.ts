@@ -6,6 +6,7 @@ import {
   FirebaseParticipantServiceModule,
   SelectRoomTypeComponentModule,
 } from '@participant';
+import { FirebaseRoomServiceModule, SelectRoomComponentModule } from '@room';
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import {
     ]),
     FirebaseParticipantServiceModule,
     SelectRoomTypeComponentModule,
+    SelectRoomComponentModule,
+    FirebaseRoomServiceModule,
   ],
   declarations: [RoomTypePage],
   providers: [],
