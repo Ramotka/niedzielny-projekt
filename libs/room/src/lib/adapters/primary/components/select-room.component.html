@@ -7,7 +7,7 @@
         <label for="room-type" class="form-label fs-5">Select room type</label>
         <select formControlName="roomType" id="room-type" class="form-select">
           <option value="" disabled selected>Room type</option>
-          <option *ngFor="let room of availableRooms$ | async" [value]="room.capacity" >{{ room.capacity }}</option>
+          <option *ngFor="let room of availableRooms$ | async" [value]="room.capacity" >{{ room.capacity }} {{ room.eventId}}</option>
         </select>
   
         <input
