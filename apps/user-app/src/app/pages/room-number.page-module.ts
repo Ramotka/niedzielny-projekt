@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { RoomTypePage } from './room-type.page';
+import { RoomNumberPage } from './room-number.page';
+import {
+  FirebaseRoomServiceModule,
+  SelectRoomNumberComponentModule,
+} from '@room';
 import { FirebaseParticipantServiceModule } from '@participant';
-import { FirebaseRoomServiceModule, SelectRoomComponentModule } from '@room';
 
 @NgModule({
   imports: [
@@ -11,15 +14,15 @@ import { FirebaseRoomServiceModule, SelectRoomComponentModule } from '@room';
     RouterModule.forChild([
       {
         path: '',
-        component: RoomTypePage,
+        component: RoomNumberPage,
       },
     ]),
-    FirebaseParticipantServiceModule,
-    SelectRoomComponentModule,
+    SelectRoomNumberComponentModule,
     FirebaseRoomServiceModule,
+    FirebaseParticipantServiceModule,
   ],
-  declarations: [RoomTypePage],
+  declarations: [RoomNumberPage],
   providers: [],
   exports: [],
 })
-export class RoomTypePageModule {}
+export class RoomNumberPageModule {}

@@ -1,7 +1,7 @@
 export interface RoomDTO {
   readonly id: string;
-  readonly roomNr: string;
-  readonly capacity: string;
+  readonly roomNr: number;
+  readonly capacity: number;
   readonly guests: Array<string>;
   readonly eventId: string;
 }

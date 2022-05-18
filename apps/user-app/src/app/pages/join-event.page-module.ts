@@ -10,6 +10,7 @@ import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/us
 import { RoomTypePageModule } from './room-type.page-module';
 import { RoommatePageModule } from './roommate.page-module';
 import { ThankYouPageModule } from './thank-you.page-module';
+import { RoomNumberPageModule } from './room-number.page-module';
 
 @NgModule({
   imports: [
@@ -38,6 +39,10 @@ import { ThankYouPageModule } from './thank-you.page-module';
           {
             path: 'roommate',
             loadChildren: () => RoommatePageModule,
+          },
+          {
+            path: 'room-number',
+            loadChildren: () => RoomNumberPageModule,
           },
           {
             path: 'thank-you',
