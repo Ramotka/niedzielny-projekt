@@ -4,9 +4,9 @@ import {
   Inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { filter, map, switchMap, tap, combineLatest } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { combineLatest, Observable } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -51,16 +51,17 @@ export class SelectRoomComponent {
       tap((test) => console.log(test))
     );
 
-  participant$: Observable<ParticipantDTO> = this._currentUserDtoStoragePort
-    .asObservable()
-    .pipe(
-      switchMap((currentUser) =>
-        this._getsOneParticipantDto.getOne({
-          email: currentUser.userEmail,
-        })
-      ),
-      tap((data) => console.log(data))
-    );
+  participant$: Observable<ParticipantDTO> = combineLatest([
+    this._contextDtoStoragePort.asObservable(),
+    this._currentUserDtoStoragePort.asObservable(),
+  ]).pipe(
+    switchMap(([context, currentUser]) =>
+      this._getsOneParticipantDto.getOne({
+        eventId: context.eventId,
+        email: currentUser.userEmail,
+      })
+    )
+  );
 
   readonly selectedRoomType: FormGroup = new FormGroup({
     roomType: new FormControl(),
@@ -78,13 +79,13 @@ export class SelectRoomComponent {
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort
   ) {}
 
-  // onSelectedRoomTypeSubmitted(
-  //   selectedRoomType: FormGroup,
-  //   participantId: string
-  // ): void {
-  //   this._setsParticipantDto.set({
-  //     id: participantId,
-  //     roomType: selectedRoomType.get('roomType')?.value,
-  //   });
-  // }
+  onSelectedRoomTypeSubmitted(
+    selectedRoomType: FormGroup,
+    participantId: string
+  ): void {
+    this._setsParticipantDto.set({
+      id: participantId,
+      roomType: selectedRoomType.get('roomType')?.value,
+    });
+  }
 }

@@ -1,9 +1,9 @@
 <div *ngIf="participant$ | async as participant">
-  <!-- {{ participant.id}} -->
+  {{ participant.id}}
 <div *ngIf="availableRooms$ | async as availableRooms">
     <form
       [formGroup]="selectedRoomType"
-      
+      (ngSubmit)="onSelectedRoomTypeSubmitted(selectedRoomType, participant.id)"
       class="d-flex flex-column justify-content-center align-items-center"
     >
       <div class="mb-4 w-100">
@@ -11,7 +11,7 @@
         <select formControlName="roomType" id="room-type" class="form-select">
           <!-- <option value="" disabled selected>Number of people</option> -->
           <option *ngFor="let room of availableRooms$ | async" [value]="room.capacity" >
-            {{ room.capacity }}
+            {{ room.capacity }}-person room
           </option>
         </select>
    
@@ -20,10 +20,8 @@
           type="submit"
           value="Next"
           [disabled]="selectedRoomType.invalid"
-
         />
       </div>
     </form>
 </div>
 </div>
-<!-- (submit)="onSelectedRoomTypeSubmitted(selectedRoomType, participant.id)" -->
