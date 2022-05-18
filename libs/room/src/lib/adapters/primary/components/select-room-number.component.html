@@ -1,1 +1,27 @@
-room number
+<div *ngIf="participant$ | async as participant">
+  <div *ngIf="availableRooms$ | async as availableRooms">
+      <form
+      [formGroup]="selectedRoomNumber"
+      (ngSubmit)="onSelectedRoomNumberSubmitted(selectedRoomNumber, participant.id)"
+        class="d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="mb-4 w-100">
+          <label for="room-number" class="form-label fs-5">Select room number</label>
+          <select formControlName="roomNr" id="room-number" class="form-select">
+            <option value="" disabled selected>Room number</option>
+            <option *ngFor="let room of availableRooms" [value]="room.roomNr" >
+              {{ room.roomNr }} - available beds: {{ room.capacity - room.guests.length}} / {{ room.capacity }}, current guests: {{ room.guests}}
+            </option>
+            <option></option>
+          </select>
+     
+          <input
+            class="mt-4 btn btn-primary w-100"
+            type="submit"
+            value="Next"
+            [disabled]="selectedRoomNumber.invalid"
+          />
+        </div>
+      </form>
+  </div>
+  </div>

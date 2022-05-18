@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RoomNumberPage } from './room-number.page';
-import { SelectRoomNumberComponentModule } from '@room';
+import {
+  FirebaseRoomServiceModule,
+  SelectRoomNumberComponentModule,
+} from '@room';
+import { FirebaseParticipantServiceModule } from '@participant';
 
 @NgModule({
   imports: [
@@ -14,6 +18,8 @@ import { SelectRoomNumberComponentModule } from '@room';
       },
     ]),
     SelectRoomNumberComponentModule,
+    FirebaseRoomServiceModule,
+    FirebaseParticipantServiceModule,
   ],
   declarations: [RoomNumberPage],
   providers: [],

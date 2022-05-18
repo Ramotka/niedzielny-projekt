@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RoomTypePage } from './room-type.page';
-import {
-  FirebaseParticipantServiceModule,
-  SelectRoomTypeComponentModule,
-} from '@participant';
+import { FirebaseParticipantServiceModule } from '@participant';
 import { FirebaseRoomServiceModule, SelectRoomComponentModule } from '@room';
 
 @NgModule({
@@ -18,7 +15,6 @@ import { FirebaseRoomServiceModule, SelectRoomComponentModule } from '@room';
       },
     ]),
     FirebaseParticipantServiceModule,
-    SelectRoomTypeComponentModule,
     SelectRoomComponentModule,
     FirebaseRoomServiceModule,
   ],

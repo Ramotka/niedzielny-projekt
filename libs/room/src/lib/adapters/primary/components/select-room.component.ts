@@ -4,9 +4,9 @@ import {
   Inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -29,7 +29,7 @@ import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/current-user-dto.storage-port';
-import { identifierName } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-select-room',
@@ -44,11 +44,8 @@ export class SelectRoomComponent {
       switchMap((data) =>
         this._getsAllRoomDto.getAll({ eventId: data.eventId })
       ),
-      map((data) =>
-        data.filter((room) => room.guests.length !== room.capacity)
-      ),
+      map((data) => data.filter((room) => room.guests.length !== room.capacity))
       // distinct(({ capacity }) => capacity),
-      tap((test) => console.log(test))
     );
 
   participant$: Observable<ParticipantDTO> = combineLatest([
@@ -76,7 +73,8 @@ export class SelectRoomComponent {
     @Inject(GETS_ONE_PARTICIPANT_DTO)
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
-    private _currentUserDtoStoragePort: CurrentUserDtoStoragePort
+    private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
+    private _router: Router
   ) {}
 
   onSelectedRoomTypeSubmitted(
@@ -87,5 +85,7 @@ export class SelectRoomComponent {
       id: participantId,
       roomType: selectedRoomType.get('roomType')?.value,
     });
+    const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
+    this._router.navigate([baseUrl + '/room-number']);
   }
 }
