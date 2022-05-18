@@ -25,7 +25,7 @@ export class FirebaseRoomService
 
   getAll(criterion: Partial<RoomDTO>): Observable<RoomDTO[]> {
     return this._client
-      .collection<RoomDTO>('rooms')
+      .collection<RoomDTO>('rooms', (ref) => ref.orderBy('capacity', 'asc'))
       .valueChanges({ idField: 'id' })
       .pipe(map((data: RoomDTO[]) => filterByCriterion(data, criterion)));
   }
