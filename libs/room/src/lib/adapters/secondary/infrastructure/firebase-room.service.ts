@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AddsRoomDtoPort } from '../../../application/ports/secondary/adds-room.dto-port';
-import { RoomDTO } from '../../../application/ports/secondary/room.dto';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { GetsAllRoomDtoPort } from '../../../application/ports/secondary/gets-all-room.dto-port';
+import { Observable, of, throwError } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { filterByCriterion } from '@lowgular/shared';
+import { AddsRoomDtoPort } from '../../../application/ports/secondary/adds-room.dto-port';
+import { GetsAllRoomDtoPort } from '../../../application/ports/secondary/gets-all-room.dto-port';
 import { SetsRoomDtoPort } from '../../../application/ports/secondary/sets-room.dto-port';
 import { RemovesRoomDtoPort } from '../../../application/ports/secondary/removes-room.dto-port';
+import { GetsOneRoomDtoPort } from '../../../application/ports/secondary/dto/gets-one-room.dto-port';
+import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 
 @Injectable()
 export class FirebaseRoomService
@@ -15,7 +16,7 @@ export class FirebaseRoomService
     AddsRoomDtoPort,
     GetsAllRoomDtoPort,
     SetsRoomDtoPort,
-    RemovesRoomDtoPort
+    RemovesRoomDtoPort, GetsOneRoomDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -36,5 +37,9 @@ export class FirebaseRoomService
 
   remove(id: string): void {
     this._client.doc('rooms/' + id).delete();
+  }
+
+  getOne(id: string): Observable<RoomDTO> {
+    return this._client.doc<RoomDTO>('rooms/'+id).valueChanges({idField: 'id'}).pipe(switchMap((item) => (item ? of(item) : throwError(new Error('Item does not exist in firebase')))));
   }
 }

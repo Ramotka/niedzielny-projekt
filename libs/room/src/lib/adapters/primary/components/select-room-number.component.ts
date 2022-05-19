@@ -5,35 +5,39 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
   GetsAllRoomDtoPort,
 } from '../../../application/ports/secondary/gets-all-room.dto-port';
 import {
+  SETS_ROOM_DTO,
+  SetsRoomDtoPort,
+} from '../../../application/ports/secondary/sets-room.dto-port';
+import {
+  GETS_ONE_ROOM_DTO,
+  GetsOneRoomDtoPort,
+} from '../../../application/ports/secondary/dto/gets-one-room.dto-port';
+import { ParticipantDTO } from 'libs/participant/src/lib/application/ports/secondary/participant.dto';
+import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 import {
-  GetsOneParticipantDtoPort,
+  SETS_PARTICIPANT_DTO,
+  SetsParticipantDtoPort,
+} from 'libs/participant/src/lib/application/ports/secondary/sets-participant.dto-port';
+import {
   GETS_ONE_PARTICIPANT_DTO,
+  GetsOneParticipantDtoPort,
 } from 'libs/participant/src/lib/application/ports/secondary/gets-one-participant.dto-port';
-import { ParticipantDTO } from 'libs/participant/src/lib/application/ports/secondary/participant.dto';
 import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/current-user-dto.storage-port';
 import { Router } from '@angular/router';
-import {
-  SetsParticipantDtoPort,
-  SETS_PARTICIPANT_DTO,
-} from 'libs/participant/src/lib/application/ports/secondary/sets-participant.dto-port';
-import {
-  SetsRoomDtoPort,
-  SETS_ROOM_DTO,
-} from '../../../application/ports/secondary/sets-room.dto-port';
 
 @Component({
   selector: 'lib-select-room-number',
@@ -76,6 +80,8 @@ export class SelectRoomNumberComponent {
     private _setsParticipantDto: SetsParticipantDtoPort,
     @Inject(GETS_ONE_PARTICIPANT_DTO)
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
+    @Inject(GETS_ONE_ROOM_DTO)
+    private _getsOneRoomDto: GetsOneRoomDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
     private _router: Router
@@ -89,17 +95,19 @@ export class SelectRoomNumberComponent {
       id: participantId,
       roomId: selectedRoomNumber.get('roomId')?.value,
     });
-    this._setsRoomDto.set({
-      id: selectedRoomNumber.get('roomId')?.value,
-      guests: [participantId],
-    });
+    this._getsOneRoomDto
+      .getOne('6ynHZ9qfppciaMB2yCZY')
+      .pipe(
+        take(1),
+        switchMap(async (data) =>
+          this._setsRoomDto.set({
+            id: selectedRoomNumber.get('roomId')?.value,
+            guests: [participantId].concat(data.guests),
+          })
+        )
+      )
+      .subscribe();
     const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
     this._router.navigate([baseUrl + '/thank-you']);
   }
 }
-
-// this.getOneRoom().pipe(take(1), switchMap()).subscribe
-//     this._setsRoomDto.set({
-//       id: selectedRoomNumber.get('roomId')?.value,
-//       guests: [participantId].concat(guests),
-//     });
