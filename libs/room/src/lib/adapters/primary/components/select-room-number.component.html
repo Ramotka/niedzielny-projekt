@@ -11,6 +11,7 @@
             <option value="" disabled="true" [selected]="true">Select room number</option>
             <option *ngFor="let room of availableRooms" [value]="room.id" >
              {{ room.roomNr }} (available beds: {{ room.capacity - room.guests.length}} / {{ room.capacity }})
+
             </option>
             <option></option>
           </select>

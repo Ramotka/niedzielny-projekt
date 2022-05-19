@@ -5,8 +5,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
 import { Observable, combineLatest } from 'rxjs';
 import { filter, map, switchMap, take } from 'rxjs/operators';
+
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -26,6 +28,7 @@ import {
   ContextDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 import {
+
   SETS_PARTICIPANT_DTO,
   SetsParticipantDtoPort,
 } from 'libs/participant/src/lib/application/ports/secondary/sets-participant.dto-port';
@@ -33,6 +36,7 @@ import {
   GETS_ONE_PARTICIPANT_DTO,
   GetsOneParticipantDtoPort,
 } from 'libs/participant/src/lib/application/ports/secondary/gets-one-participant.dto-port';
+
 import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
@@ -69,11 +73,13 @@ export class SelectRoomNumberComponent {
 
   readonly selectedRoomNumber: FormGroup = new FormGroup({
     roomId: new FormControl(''),
+
   });
 
   constructor(
     @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
     @Inject(SETS_ROOM_DTO) private _setsRoomDto: SetsRoomDtoPort,
+
     @Inject(CONTEXT_DTO_STORAGE)
     private _contextDtoStoragePort: ContextDtoStoragePort,
     @Inject(SETS_PARTICIPANT_DTO)
@@ -82,6 +88,7 @@ export class SelectRoomNumberComponent {
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(GETS_ONE_ROOM_DTO)
     private _getsOneRoomDto: GetsOneRoomDtoPort,
+
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
     private _router: Router

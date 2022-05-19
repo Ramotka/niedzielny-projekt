@@ -7,6 +7,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap, distinct, tap } from 'rxjs/operators';
+
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -39,6 +40,7 @@ import { Router } from '@angular/router';
 })
 export class SelectRoomComponent {
   availableRooms$: Observable<string[]> = this._contextDtoStoragePort
+
     .asObservable()
     .pipe(
       switchMap((data) =>
