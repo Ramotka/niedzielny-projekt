@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, distinct, tap } from 'rxjs/operators';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -38,14 +38,22 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectRoomComponent {
-  availableRooms$: Observable<RoomDTO[]> = this._contextDtoStoragePort
+  availableRooms$: Observable<string[]> = this._contextDtoStoragePort
     .asObservable()
     .pipe(
       switchMap((data) =>
         this._getsAllRoomDto.getAll({ eventId: data.eventId })
       ),
-      map((data) => data.filter((room) => room.guests.length !== room.capacity))
-      // distinct(({ capacity }) => capacity),
+      map((data) =>
+        data.filter((room) => room.guests.length !== room.capacity)
+      ),
+      map((data) => data.map((room) => room.roomType)),
+      map((data) => [...new Set(data)])
+      // tap((data) =>
+      //   this.selectedRoomType.patchValue({
+      //     roomType: data[0],
+      //   })
+      // )
     );
 
   participant$: Observable<ParticipantDTO> = combineLatest([
@@ -61,7 +69,7 @@ export class SelectRoomComponent {
   );
 
   readonly selectedRoomType: FormGroup = new FormGroup({
-    roomType: new FormControl(),
+    roomType: new FormControl(''),
   });
 
   constructor(

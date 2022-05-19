@@ -30,6 +30,10 @@ import {
   SetsParticipantDtoPort,
   SETS_PARTICIPANT_DTO,
 } from 'libs/participant/src/lib/application/ports/secondary/sets-participant.dto-port';
+import {
+  SetsRoomDtoPort,
+  SETS_ROOM_DTO,
+} from '../../../application/ports/secondary/sets-room.dto-port';
 
 @Component({
   selector: 'lib-select-room-number',
@@ -60,11 +64,12 @@ export class SelectRoomNumberComponent {
   );
 
   readonly selectedRoomNumber: FormGroup = new FormGroup({
-    roomNr: new FormControl(),
+    roomId: new FormControl(''),
   });
 
   constructor(
     @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
+    @Inject(SETS_ROOM_DTO) private _setsRoomDto: SetsRoomDtoPort,
     @Inject(CONTEXT_DTO_STORAGE)
     private _contextDtoStoragePort: ContextDtoStoragePort,
     @Inject(SETS_PARTICIPANT_DTO)
@@ -82,9 +87,19 @@ export class SelectRoomNumberComponent {
   ): void {
     this._setsParticipantDto.set({
       id: participantId,
-      roomNr: selectedRoomNumber.get('roomNr')?.value,
+      roomId: selectedRoomNumber.get('roomId')?.value,
+    });
+    this._setsRoomDto.set({
+      id: selectedRoomNumber.get('roomId')?.value,
+      guests: [participantId],
     });
     const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
     this._router.navigate([baseUrl + '/thank-you']);
   }
 }
+
+// this.getOneRoom().pipe(take(1), switchMap()).subscribe
+//     this._setsRoomDto.set({
+//       id: selectedRoomNumber.get('roomId')?.value,
+//       guests: [participantId].concat(guests),
+//     });

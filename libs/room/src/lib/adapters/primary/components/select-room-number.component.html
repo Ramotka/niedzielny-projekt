@@ -7,10 +7,10 @@
       >
         <div class="mb-4 w-100">
           <label for="room-number" class="form-label fs-5">Select room number</label>
-          <select formControlName="roomNr" id="room-number" class="form-select">
-            <option value="" disabled selected>Room number</option>
-            <option *ngFor="let room of availableRooms" [value]="room.roomNr" >
-              {{ room.roomNr }} - available beds: {{ room.capacity - room.guests.length}} / {{ room.capacity }}, current guests: {{ room.guests}}
+          <select formControlName="roomId" id="room-number" class="form-select">
+            <option value="" disabled="true" [selected]="true">Select room number</option>
+            <option *ngFor="let room of availableRooms" [value]="room.id" >
+             {{ room.roomNr }} (available beds: {{ room.capacity - room.guests.length}} / {{ room.capacity }})
             </option>
             <option></option>
           </select>
