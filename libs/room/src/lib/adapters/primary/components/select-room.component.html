@@ -12,10 +12,8 @@
           <option value="" disabled="true" [selected]="true">Available room types</option>
           <option *ngFor="let roomType of availableRoomTypes" [value]="roomType" >
             {{ roomType }} room
-
           </option>
         </select>
-   
         <input
           class="mt-4 btn btn-primary w-100"
           type="submit"
@@ -26,3 +24,4 @@
     </form>
 </div>
 </div>
+

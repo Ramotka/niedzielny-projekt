@@ -4,7 +4,7 @@ import {
   Inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Observable, combineLatest } from 'rxjs';
 import { filter, map, switchMap, take } from 'rxjs/operators';
@@ -78,7 +78,7 @@ export class SelectRoomNumberComponent {
   );
 
   readonly selectedRoomNumber: FormGroup = new FormGroup({
-    roomId: new FormControl(''),
+    roomId: new FormControl('', Validators.required),
   });
 
   constructor(
