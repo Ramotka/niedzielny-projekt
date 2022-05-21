@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { RoomNumberPage } from './room-number.page';
 import {
   FirebaseRoomServiceModule,
+  InMemoryRoomTypeStorageModule,
   SelectRoomNumberComponentModule,
 } from '@room';
 import { FirebaseParticipantServiceModule } from '@participant';
@@ -20,6 +21,7 @@ import { FirebaseParticipantServiceModule } from '@participant';
     SelectRoomNumberComponentModule,
     FirebaseRoomServiceModule,
     FirebaseParticipantServiceModule,
+    InMemoryRoomTypeStorageModule,
   ],
   declarations: [RoomNumberPage],
   providers: [],

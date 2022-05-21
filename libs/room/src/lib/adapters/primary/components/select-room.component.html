@@ -3,13 +3,13 @@
 
     <form
       [formGroup]="selectedRoomType"
-      (ngSubmit)="onSelectedRoomTypeSubmitted(selectedRoomType, participant.id)"
+      (ngSubmit)="onSelectedRoomTypeSubmitted(selectedRoomType)"
       class="d-flex flex-column justify-content-center align-items-center"
     >
       <div class="mb-4 w-100">
         <label for="room-type" class="form-label fs-5">Select room type</label>
         <select formControlName="roomType" id="room-type" class="form-select">
-          <option value="" disabled="true" [selected]="true">Select room type</option>
+          <option value="" disabled="true" [selected]="true">Available room types</option>
           <option *ngFor="let roomType of availableRoomTypes" [value]="roomType" >
             {{ roomType }} room
 

@@ -4,7 +4,7 @@ import {
   Inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap, distinct, tap } from 'rxjs/operators';
 
@@ -30,6 +30,10 @@ import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/current-user-dto.storage-port';
+import {
+  SETS_STATE_ROOM_TYPE_CONTEXT,
+  SetsStateRoomTypeContextPort,
+} from '../../../application/ports/secondary/context/sets-state-room-type.context-port';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,7 +44,6 @@ import { Router } from '@angular/router';
 })
 export class SelectRoomComponent {
   availableRooms$: Observable<string[]> = this._contextDtoStoragePort
-
     .asObservable()
     .pipe(
       switchMap((data) =>
@@ -71,7 +74,7 @@ export class SelectRoomComponent {
   );
 
   readonly selectedRoomType: FormGroup = new FormGroup({
-    roomType: new FormControl(''),
+    roomType: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -84,15 +87,13 @@ export class SelectRoomComponent {
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
+    @Inject(SETS_STATE_ROOM_TYPE_CONTEXT)
+    private _setsStateRoomTypeContextPort: SetsStateRoomTypeContextPort,
     private _router: Router
   ) {}
 
-  onSelectedRoomTypeSubmitted(
-    selectedRoomType: FormGroup,
-    participantId: string
-  ): void {
-    this._setsParticipantDto.set({
-      id: participantId,
+  onSelectedRoomTypeSubmitted(selectedRoomType: FormGroup): void {
+    this._setsStateRoomTypeContextPort.setState({
       roomType: selectedRoomType.get('roomType')?.value,
     });
     const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
