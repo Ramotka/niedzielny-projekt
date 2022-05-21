@@ -4,28 +4,26 @@ import {
   Inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
-import { map, switchMap, distinct, tap } from 'rxjs/operators';
-
-import { RoomDTO } from '../../../application/ports/secondary/room.dto';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, combineLatest } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import {
   GETS_ALL_ROOM_DTO,
   GetsAllRoomDtoPort,
 } from '../../../application/ports/secondary/gets-all-room.dto-port';
 import {
+  SETS_STATE_ROOM_TYPE_CONTEXT,
+  SetsStateRoomTypeContextPort,
+} from '../../../application/ports/secondary/context/sets-state-room-type.context-port';
+import { ParticipantDTO } from 'libs/participant/src/lib/application/ports/secondary/participant.dto';
+import {
   CONTEXT_DTO_STORAGE,
   ContextDtoStoragePort,
 } from 'libs/core/src/lib/application/ports/secondary/context-dto.storage-port';
 import {
-  SetsParticipantDtoPort,
-  SETS_PARTICIPANT_DTO,
-} from 'libs/participant/src/lib/application/ports/secondary/sets-participant.dto-port';
-import {
-  GetsOneParticipantDtoPort,
   GETS_ONE_PARTICIPANT_DTO,
+  GetsOneParticipantDtoPort,
 } from 'libs/participant/src/lib/application/ports/secondary/gets-one-participant.dto-port';
-import { ParticipantDTO } from 'libs/participant/src/lib/application/ports/secondary/participant.dto';
 import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
@@ -40,7 +38,6 @@ import { Router } from '@angular/router';
 })
 export class SelectRoomComponent {
   availableRooms$: Observable<string[]> = this._contextDtoStoragePort
-
     .asObservable()
     .pipe(
       switchMap((data) =>
@@ -71,31 +68,30 @@ export class SelectRoomComponent {
   );
 
   readonly selectedRoomType: FormGroup = new FormGroup({
-    roomType: new FormControl(''),
+    roomType: new FormControl('', Validators.required),
   });
 
   constructor(
     @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
     @Inject(CONTEXT_DTO_STORAGE)
     private _contextDtoStoragePort: ContextDtoStoragePort,
-    @Inject(SETS_PARTICIPANT_DTO)
-    private _setsParticipantDto: SetsParticipantDtoPort,
     @Inject(GETS_ONE_PARTICIPANT_DTO)
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
+    @Inject(SETS_STATE_ROOM_TYPE_CONTEXT)
+    private _setsStateRoomTypeContextPort: SetsStateRoomTypeContextPort,
     private _router: Router
   ) {}
 
-  onSelectedRoomTypeSubmitted(
-    selectedRoomType: FormGroup,
-    participantId: string
-  ): void {
-    this._setsParticipantDto.set({
-      id: participantId,
-      roomType: selectedRoomType.get('roomType')?.value,
-    });
-    const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
-    this._router.navigate([baseUrl + '/room-number']);
+  onSelectedRoomTypeSubmitted(selectedRoomType: FormGroup): void {
+    this._setsStateRoomTypeContextPort
+      .setState({
+        roomType: selectedRoomType.get('roomType')?.value,
+      })
+      .subscribe(() => {
+        const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
+        this._router.navigate([baseUrl + '/room-number']);
+      });
   }
 }
