@@ -8,6 +8,7 @@ import {
   InMemoryCurrentUserStorageModule,
 } from '@core';
 import { EventIdResolverModule } from '@event';
+import { FirebaseParticipantServiceModule } from '@participant';
 import { UserEmailResolverModule } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver-module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { AppComponent } from './app.component';
     EventIdResolverModule,
     UserEmailResolverModule,
     InMemoryContextStorageModule,
+    FirebaseParticipantServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

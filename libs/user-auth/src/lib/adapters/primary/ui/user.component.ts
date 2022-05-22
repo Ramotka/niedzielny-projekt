@@ -51,7 +51,7 @@ export class UserComponent {
         password: login.get('password')?.value,
       })
       .subscribe((data) => {
-        this._router.navigate(['/my-events']);
+        this._router.navigate(['/events']);
       });
   }
 }

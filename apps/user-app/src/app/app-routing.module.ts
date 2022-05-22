@@ -16,6 +16,8 @@ import { JoinEventPageModule } from './pages/join-event.page-module';
 import { UserEmailResolver } from 'libs/user-auth/src/lib/adapters/primary/ui/user-email.resolver';
 import { MyEventCheckGuard } from './pages/my-event-check.guard';
 import { AccessDeniedPageModule } from './pages/access-denied.page-module';
+import { UserPermissionGuard } from 'libs/participant/src/lib/adapters/primary/ui/user-permission.guard';
+import { FlowPageModule } from './pages/flow.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -25,24 +27,30 @@ const routes: Routes = [
     loadChildren: () => HomePageModule,
   },
   {
-    path: 'my-events',
-    loadChildren: () => UserEventsPageModule,
+    path: 'events',
+    loadChildren: () => FlowPageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
-    resolve: {
-      userEmail: UserEmailResolver,
-    },
   },
-  {
-    path: 'events/:eventId',
-    loadChildren: () => JoinEventPageModule,
-    canActivate: [AngularFireAuthGuard, MyEventCheckGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
-    resolve: {
-      eventId: EventIdResolver,
-      userEmail: UserEmailResolver,
-    },
-  },
+  // {
+  //   path: 'my-events',
+  //   loadChildren: () => UserEventsPageModule,
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
+  //   resolve: {
+  //     userEmail: UserEmailResolver,
+  //   },
+  // },
+  // {
+  //   path: 'events/:eventId',
+  //   loadChildren: () => JoinEventPageModule,
+  //   canActivate: [AngularFireAuthGuard, UserPermissionGuard],
+  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
+  //   resolve: {
+  //     eventId: EventIdResolver,
+  //     userEmail: UserEmailResolver,
+  //   },
+  // },
 
   {
     path: 'login',
