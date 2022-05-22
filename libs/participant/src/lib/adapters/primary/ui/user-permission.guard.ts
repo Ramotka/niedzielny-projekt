@@ -42,14 +42,12 @@ export class UserPermissionGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> {
     return this._currentUserDtoStoragePort.asObservable().pipe(
-      tap(console.log),
       switchMap((currentUser) =>
         this._getsAllParticipantDto.getAll({
           eventId: route.params?.['eventId'],
           email: currentUser.userEmail,
         })
       ),
-      tap(console.log),
       map((data) => {
         if (data.length > 0) {
           return true;
