@@ -85,6 +85,7 @@ export class SelectRoomComponent {
   ) {}
 
   onSelectedRoomTypeSubmitted(selectedRoomType: FormGroup): void {
+    localStorage.setItem('roomType', selectedRoomType.get('roomType')?.value);
     this._setsStateRoomTypeContextPort
       .setState({
         roomType: selectedRoomType.get('roomType')?.value,

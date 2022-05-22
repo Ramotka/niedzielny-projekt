@@ -52,18 +52,17 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectRoomNumberComponent {
-  availableRooms$: Observable<RoomDTO[]> = combineLatest([
-    this._contextDtoStoragePort.asObservable(),
-    this._selectsRoomTypeContextPort.select(),
-  ]).pipe(
-    switchMap(([context, room]) =>
-      this._getsAllRoomDto.getAll({
-        eventId: context.eventId,
-        roomType: room.roomType,
-      })
-    ),
-    map((data) => data.filter((room) => room.guests.length !== room.capacity))
-  );
+  availableRooms$: Observable<RoomDTO[]> = this._contextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((context) =>
+        this._getsAllRoomDto.getAll({
+          eventId: context.eventId,
+          roomType: localStorage.getItem('roomType') as string,
+        })
+      ),
+      map((data) => data.filter((room) => room.guests.length !== room.capacity))
+    );
 
   participant$: Observable<ParticipantDTO> = combineLatest([
     this._contextDtoStoragePort.asObservable(),
@@ -120,6 +119,7 @@ export class SelectRoomNumberComponent {
       )
       .subscribe(() => {
         const baseUrl = this._router.url.split('/').slice(0, -1).join('/');
+        localStorage.removeItem('roomType');
         this._router.navigate([baseUrl + '/thank-you']);
       });
   }
