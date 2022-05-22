@@ -5,6 +5,7 @@ import { ADDS_ROOM_DTO } from '../../../application/ports/secondary/adds-room.dt
 import { GETS_ALL_ROOM_DTO } from '../../../application/ports/secondary/gets-all-room.dto-port';
 import { SETS_ROOM_DTO } from '../../../application/ports/secondary/sets-room.dto-port';
 import { REMOVES_ROOM_DTO } from '../../../application/ports/secondary/removes-room.dto-port';
+import { GETS_ONE_ROOM_DTO } from '../../../application/ports/secondary/dto/gets-one-room.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -15,6 +16,7 @@ import { REMOVES_ROOM_DTO } from '../../../application/ports/secondary/removes-r
     { provide: GETS_ALL_ROOM_DTO, useExisting: FirebaseRoomService },
     { provide: SETS_ROOM_DTO, useExisting: FirebaseRoomService },
     { provide: REMOVES_ROOM_DTO, useExisting: FirebaseRoomService },
+    { provide: GETS_ONE_ROOM_DTO, useExisting: FirebaseRoomService }
   ],
   exports: [],
 })
