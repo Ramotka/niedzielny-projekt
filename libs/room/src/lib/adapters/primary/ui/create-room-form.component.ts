@@ -38,10 +38,22 @@ export class CreateRoomFormComponent {
   ) {}
 
   onCreateRoomSubmited(createRoom: FormGroup, eventId: string): void {
+    const capacityRoom: number = createRoom.get('capacity')?.value;
     this._addsRoomDto.add({
-      capacity: createRoom.get('capacity')?.value,
+      capacity: capacityRoom,
       roomNr: createRoom.get('roomNr')?.value,
       eventId: eventId,
+      guests: [],
+      roomType:
+        capacityRoom === 1
+          ? 'single'
+          : capacityRoom === 2
+          ? 'double'
+          : capacityRoom === 3
+          ? 'triple'
+          : capacityRoom === 4
+          ? 'four-person'
+          : '',
     });
     createRoom.reset();
   }
